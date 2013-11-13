@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RPI Study Solutoins</title>
+  <title>RPI Study Solutions</title>
 </head>
 <body>
 </body>
