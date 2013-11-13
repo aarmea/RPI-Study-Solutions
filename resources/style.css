@@ -7,14 +7,16 @@ body{
 }
 #signUpDiv{
   float: right;
-  margin-left: 100px;
+  margin-right: 10%;
+  margin-left: 5%;
   padding-top: 100px;
-  width: 40%;
+  width: 35%;
   height: 300px;
 }
 #aboutDiv{
   float: left;
-  margin: auto;
-  width: 40%;
+  margin-left: 10%;
+  margin-right: 5%;
+  width: 35%;
   height: 300px;
 }
