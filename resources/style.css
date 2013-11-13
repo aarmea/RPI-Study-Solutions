@@ -4,14 +4,26 @@ body{
 #topBarDiv{
   width: 80%;
   margin: auto;
+  text-align: center;
+  border: solid;
+}
+#footer{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  border: solid;
+}
+#content{
+  overflow: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 #signUpDiv{
   float: right;
   margin-right: 10%;
   margin-left: 5%;
-  padding-top: 100px;
+  padding-top: 50px;
   width: 35%;
-  height: 300px;
 }
 #aboutDiv{
   float: left;
@@ -19,4 +31,7 @@ body{
   margin-right: 5%;
   width: 35%;
   height: 300px;
+}
+.loginImage{
+  height: 150px;
 }
