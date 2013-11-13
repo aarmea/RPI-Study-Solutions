@@ -1,0 +1,20 @@
+body{
+  overflow: auto;
+}
+#topBarDiv{
+  width: 80%;
+  margin: auto;
+}
+#signUpDiv{
+  float: right;
+  margin-left: 100px;
+  padding-top: 100px;
+  width: 40%;
+  height: 300px;
+}
+#aboutDiv{
+  float: left;
+  margin: auto;
+  width: 40%;
+  height: 300px;
+}
