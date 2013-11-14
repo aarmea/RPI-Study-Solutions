@@ -1,3 +1,3 @@
 <div id="footer">
-  <p>Footer!</p>
+  <p>Contact Us!</p>
 </div>
