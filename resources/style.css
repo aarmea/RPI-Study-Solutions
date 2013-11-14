@@ -7,6 +7,13 @@ body{
   text-align: center;
   border: solid;
 }
+#topBarUL{
+  padding: 0px;
+}
+#topBarUL li{
+  display: inline;
+  padding: 5px;
+}
 #footer{
   width: 80%;
   margin: auto;
@@ -32,7 +39,6 @@ body{
   margin-left: 10%;
   margin-right: 5%;
   width: 35%;
-  height: 300px;
 }
 .loginImage{
   height: 150px;
