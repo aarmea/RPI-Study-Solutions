@@ -62,6 +62,7 @@ h2{
   border: solid;
   width: 80%;
   margin: auto;
+  margin-bottom: 10px;
 }
 .postBody{
   float: left;
