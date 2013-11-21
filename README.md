@@ -13,3 +13,7 @@ functionality of the website, but we have many ideas to add to it depending on
 how much we can get done within our time limit. We believe that this website
 will help college students who desire to study in groups or need to organize
 group projects.
+
+Vagrant box from <https://github.com/Version2beta/vagrant-chef-composer>. [PHP
+Composer](http://getcomposer.org/) included using components from
+<https://github.com/Version2beta/vagrant-chef-composer/tree/master/cookbooks>.
