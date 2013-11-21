@@ -56,7 +56,7 @@
 
         <!-- add in posting to thread -->
         <button>Reply to this Thread</button>
-        <button>Start new Thread</button>
+        <a  href="createThread.php"><button>Start new Thread</button></a>
       </div>
       <?php
     }else{
