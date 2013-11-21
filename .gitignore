@@ -8,5 +8,8 @@ Thumbs.db
 # Sublime Text workspace
 *.sublime-workspace
 
+# ftpsync file uploader
+ftpsync.settings
+
 # Vim swap files
 *.swp
