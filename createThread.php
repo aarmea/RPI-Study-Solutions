@@ -15,6 +15,7 @@
       <input type="text" name="threadName">
       <label>Post Body:</label>
       <textarea cols="40" rows="5" name="myname"> Now we are inside the area - which is nice. </textarea>
+      <input type="submit" value="Submit">
     </form>
   </div>
   <?php include "resources/footer.php"; ?>
