@@ -1,0 +1,121 @@
+
+
+body{
+  overflow: auto;
+  background-color:  rgb(249, 249, 249);
+}
+body *{
+  background-color:  rgb(249, 249, 249);
+}
+#topBarDiv{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  border: solid;
+  border-color: rgb(247, 0, 31);
+  background-color:  rgb(249, 249, 249);
+}
+#topBarUL{
+  padding: 0px;
+  background-color:  rgb(249, 249, 249);
+}
+.imageLI{
+  display: inline;
+  background-color:  rgb(249, 249, 249);
+}
+#topBarUL li:not(.imageLI){
+  display: inline;
+  padding: 5px;
+  background-color:  rgb(249, 249, 249);
+}
+#footer{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  border: solid;
+  border-color: rgb(98, 153, 173);
+  font-size:13px;
+  background-color:  rgb(249, 249, 249);
+}
+#content{
+  width: 80%;
+  overflow: auto;
+  margin: auto;
+  border: solid;
+  border-color: rgb(125, 143, 41);
+  margin-top: -10px;
+  background-color:  rgb(249, 249, 249);
+}
+#signUpDiv{
+  float: right;
+  margin-right: 10%;
+  margin-left: 5%;
+  padding-top: 50px;
+  width: 35%;
+  height: 50%;
+  background-color:  rgb(249, 249, 249);
+}
+#aboutDiv{
+  float: left;
+  margin-left: 10%;
+  margin-right: 5%;
+  width: 35%;
+  font-size:2em;
+  background-color:  rgb(249, 249, 249);
+}
+.loginImage{
+  padding-top: 50px;
+}
+
+.logoImage{
+  float: left;
+  height: 200px;
+  width: 50%;
+  margin-top: 0px;
+  position: relative;
+}
+h2{
+  text-align: center;
+  background-color:  rgb(249, 249, 249);
+}
+.post{
+  display: block; 
+  overflow: auto;
+  position: relative;
+  border: solid;
+  width: 80%;
+  margin: auto;
+  margin-bottom: 10px;
+  background-color:  rgb(249, 249, 249);
+}
+.postBody{
+  float: left;
+  margin: 10px;
+  background-color:  rgb(249, 249, 249);
+}
+.metaPost{
+  float: left;
+  clear: left;
+  border-right: solid;
+  border-width: 1px;
+  width: 100px;
+  background-color:  rgb(249, 249, 249);
+}
+.metaPost p{
+  margin: 5px;
+  background-color:  rgb(249, 249, 249);
+}
+.quoteButton{
+  position: absolute;
+  right:    0;
+  bottom:   0;
+  background-color:  rgb(249, 249, 249);
+}
+
+.whitebox{
+  height: 200px;
+  width: 25%;
+  margin: 0 auto;
+  position:relative;
+  background-color: rgb(249, 249, 249);
+}
