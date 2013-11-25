@@ -14,6 +14,27 @@ how much we can get done within our time limit. We believe that this website
 will help college students who desire to study in groups or need to organize
 group projects.
 
-Vagrant box from <https://github.com/Version2beta/vagrant-chef-composer>. [PHP
-Composer](http://getcomposer.org/) included using components from
-<https://github.com/Version2beta/vagrant-chef-composer/tree/master/cookbooks>.
+Testing locally
+---------------
+
+The repository contains a Vagrant configuration for a server virtual machine
+that can run locally within your computer running Windows, Mac OS X, or Linux.
+To use it, download and install [VirtualBox][virtualbox] and
+[Vagrant][vagrant], then in a terminal `cd` to this repository and run
+`vagrant up`. Once Vagrant finishes starting the virtual machine, add
+
+    127.0.0.1 www.dev-site.com dev-site.com dev.dev-site-static.com
+
+to your `hosts` file, open a Web browser and navigate to
+<http://www.dev-site.com:8080/>. When you're done, run
+`vagrant suspend` to stop the virtual machine.
+
+The Vagrant configuration is based on the LAMP stack at
+<https://github.com/ymainier/vagrant-lamp> and includes
+[PHP Composer][composer] using components from
+[vagrant-chef-composer][chef-composer].
+
+[virtualbox]: https://www.virtualbox.org/
+[vagrant]: http://www.vagrantup.com/
+[composer]: http://getcomposer.org/
+[chef-composer]: https://github.com/Version2beta/vagrant-chef-composer
