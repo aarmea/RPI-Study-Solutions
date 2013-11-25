@@ -11,5 +11,8 @@ Thumbs.db
 # ftpsync file uploader
 ftpsync.settings
 
+# config file
+config.php
+
 # Vim swap files
 *.swp
