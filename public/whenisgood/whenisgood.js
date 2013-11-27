@@ -1,3 +1,8 @@
+
+function removeSeconds(s) {
+  return s.substring(0, s.length - 6) + ' ' +  s.substring(s.length - 2, s.length);
+}
+
 (function($) {
 
   //Store an array of selected dates OR indices
@@ -54,8 +59,10 @@
           var tomorrow = new Date();
           tomorrow.setDate(oneWeekAgo.getDate()+j);
 
-          var block = $("<td data-year='" + tomorrow.getFullYear() + "' data-month='" + tomorrow.getMonth() + "' data-day='" + tomorrow.getDate() + "' data-hour='" + curRowDate.getHours() + "'>"+ curRowDate.toLocaleTimeString() +"</td>").appendTo(jqueryObj);
-          
+          var block = $("<td data-year='" + tomorrow.getFullYear() + "' data-month='" + tomorrow.getMonth() + "' data-day='" + tomorrow.getDate() +
+           "' data-hour='" + curRowDate.getHours() + "' class='cell'>"+ removeSeconds(curRowDate.toLocaleTimeString()) +"</td>").appendTo(jqueryObj);
+
+
           $(block).bind('click', function() {
               //alert('User clicked on ' + $(this).text());
               $(this).toggleClass("green-cell");
@@ -98,7 +105,7 @@ function onSubmit() {
     console.log('');
   }
 
-  $.post('whenisgood.php', {'times': allTimesArr});
+  $.post('whenisgood.php', {'times': allTimesArr} );
 
 }
 
@@ -106,5 +113,3 @@ $(document).ready(function () {
       $("#timegrid").load_table();
       $("#submit").bind('click', onSubmit);
 });
-
-
