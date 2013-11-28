@@ -1,4 +1,19 @@
 
+function date_available(year,month,day,hour) {
+  for(var i=0;i<available_times.length;i++) {
+
+    //console.log(available_times[i][0] + "," + available_times[i][1] + "," + available_times[i][2] + "," + available_times[i][3]);
+    //console.log(year + "," + month + "," + day + "," + hour);
+    //console.log('');
+
+    if(available_times[i][0] == year && available_times[i][1] == month &&
+      available_times[i][2] == day && available_times[i][3] == hour) {
+        return true;
+    }
+  }
+  return false;
+}
+
 function removeSeconds(s) {
   return s.substring(0, s.length - 6) + ' ' +  s.substring(s.length - 2, s.length);
 }
@@ -59,9 +74,15 @@ function removeSeconds(s) {
           var tomorrow = new Date();
           tomorrow.setDate(oneWeekAgo.getDate()+j);
 
-          var block = $("<td data-year='" + tomorrow.getFullYear() + "' data-month='" + tomorrow.getMonth() + "' data-day='" + tomorrow.getDate() +
-           "' data-hour='" + curRowDate.getHours() + "' class='cell'>"+ removeSeconds(curRowDate.toLocaleTimeString()) +"</td>").appendTo(jqueryObj);
+          var classes = '';
 
+          if(!date_available(tomorrow.getFullYear(),tomorrow.getMonth(),tomorrow.getDate(),curRowDate.getHours()))
+            classes = "' class='cell'>";
+          else
+            classes = "' class='cell green-cell'>";
+
+          var block = $("<td data-year='" + tomorrow.getFullYear() + "' data-month='" + tomorrow.getMonth() + "' data-day='" + tomorrow.getDate() +
+           "' data-hour='" + curRowDate.getHours() + classes + removeSeconds(curRowDate.toLocaleTimeString()) +"</td>").appendTo(jqueryObj);
 
           $(block).bind('click', function() {
               //alert('User clicked on ' + $(this).text());
@@ -95,7 +116,6 @@ function onSubmit() {
     var timeArr = [year,month,day,hour];
 
     allTimesArr.push(timeArr);
-
   }
 
   for(var i=0;i<allTimesArr.length;i++) {
@@ -105,7 +125,9 @@ function onSubmit() {
     console.log('');
   }
 
-  $.post('whenisgood.php', {'times': allTimesArr} );
+  console.log("ABOUT TO POST");
+
+  $.post('settings.php', {'times': '0'} );
 
 }
 
