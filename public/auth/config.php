@@ -6,6 +6,6 @@ $CAS_URI = "/cas";
 
 // For RPI, http://clubs.union.rpi.edu/cas/cas-auth.pem.
 // Replace this file with your university's certificate chain.
-$CAS_CA_CERT_PATH = "cas-auth.pem";
+$CAS_CA_CERT_PATH = "auth/cas-auth.pem";
 
 ?>

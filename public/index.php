@@ -3,7 +3,7 @@
   <?php include "resources/topbar.php"; ?>
   <div id="content">
   <div id="signUpDiv">
-    <a href="google.com"><img src="resources/images/login-button-blue-hi.png" class="loginImage"></a>
+    <a href="login.php"><img src="resources/images/login-button-blue-hi.png" class="loginImage"></a>
   </div>
   <div id="aboutDiv">
     <h2>Project Summary</h2>
