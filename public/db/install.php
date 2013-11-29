@@ -1,58 +1,42 @@
 <?php
-$host="localhost";
-
-require "config.php";
-
-$root= $config['DB_USERNAME'];
-$root_password= $config['DB_PASSWORD'];
-
-$user='newuser';
-$pass='newpass';
-$db="websysfinaldatabase";
+require_once "config.php";
+echo "<html><pre>";
 
 try {
-  $dbh = new PDO("mysql:host=$host", $root, $root_password);
+  $dbh = new PDO("mysql:host=$DB_HOST", $DB_USERNAME, $DB_PASSWORD);
+  echo "Successfully connected to the database server\n";
 
-  $dbh->exec("CREATE DATABASE if not exists `$db`;
-    CREATE USER '$user'@'localhost' IDENTIFIED BY '$pass';
-    GRANT ALL ON `$db`.* TO '$user'@'localhost';
-    FLUSH PRIVILEGES;")
+  $dbh->exec("CREATE DATABASE if not exists `$DB_NAME`
+    DEFAULT CHARACTER SET utf8
+    DEFAULT COLLATE utf8_general_ci;")
   or die(print_r($dbh->errorInfo(), true));
 } catch (PDOException $e) {
   die("DB ERROR: ". $e->getMessage());
 }
 
-$sql = "USE websysfinaldatabase";
+$sql = "USE $DB_NAME";
 $dbh->exec($sql);
+echo "Successfully created database $DB_NAME.\n";
 
-$sql = "CREATE TABLE if not exists tutor (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `rcs` varchar(200) NOT NULL,
-  `fname` varchar(100) NOT NULL,
-  `lname` varchar(100) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
-  )";
-$dbh->exec($sql);
-
-$sql = "CREATE TABLE IF NOT EXISTS `user` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `rcs` varchar(200) NOT NULL,
-  `fname` varchar(100) NOT NULL,
-  `lname` varchar(100) NOT NULL,
-  `email` varchar(250) NOT NULL,
-  PRIMARY KEY (`id`)
+$sql = "CREATE TABLE IF NOT EXISTS `users` (
+  `rcsid` VARCHAR(10) NOT NULL,
+  `fname` VARCHAR(100) NOT NULL,
+  `lname` VARCHAR(100) NOT NULL,
+  `email` VARCHAR(250) NOT NULL,
+  PRIMARY KEY (`rcsid`)
   ) ENGINE=InnoDB";
 $dbh->exec($sql);
+echo "Successfully created the users table.\n";
 
+/*
 $sql = "CREATE TABLE IF NOT EXISTS `groups` (
   `g_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `groupName` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `groupName` varchar(255) NOT NULL,
   `owner_id` int(10) unsigned NOT NULL,
   PRIMARY KEY (`g_id`),
   KEY `owner_id` (`owner_id`),
   KEY `g_id` (`g_id`)
-  ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2";
+  ) ENGINE=InnoDB";
 $dbh->exec($sql);
 
 $sql = "CREATE TABLE IF NOT EXISTS `posts` (
@@ -65,16 +49,16 @@ $sql = "CREATE TABLE IF NOT EXISTS `posts` (
   PRIMARY KEY (`p_id`),
   KEY `t_id` (`t_id`),
   KEY `user_id` (`user_id`)
-  ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ";
+  ) ENGINE=InnoDB";
 $dbh->exec($sql);
 
 $sql = "CREATE TABLE IF NOT EXISTS `threads` (
   `t_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `group_id` int(10) unsigned NOT NULL,
-  `threadName` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `threadName` varchar(255) NOT NULL,
   PRIMARY KEY (`t_id`),
   KEY `group_id` (`group_id`)
-  ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ";
+  ) ENGINE=InnoDB";
 $dbh->exec($sql);
 
 $sql = "ALTER TABLE `groups`
@@ -89,6 +73,7 @@ $dbh->exec($sql);
 $sql = "ALTER TABLE `threads`
 ADD CONSTRAINT `threads_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`g_id`)";
 $dbh->exec($sql);
+ */
 
-echo "Database created";
+echo "Installation succeeded.";
 ?>
