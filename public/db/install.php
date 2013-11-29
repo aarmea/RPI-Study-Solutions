@@ -20,9 +20,11 @@ echo "Successfully created database $DB_NAME.\n";
 
 $sql = "CREATE TABLE IF NOT EXISTS `users` (
   `rcsid` VARCHAR(10) NOT NULL,
-  `fname` VARCHAR(100) NOT NULL,
-  `lname` VARCHAR(100) NOT NULL,
-  `email` VARCHAR(250) NOT NULL,
+  `shortname` VARCHAR(64) NOT NULL,
+  `fullname` VARCHAR(64) NOT NULL,
+  `email` VARCHAR(256),
+  `yog` YEAR,
+  `major` VARCHAR(64),
   PRIMARY KEY (`rcsid`)
   ) ENGINE=InnoDB";
 $dbh->exec($sql);
