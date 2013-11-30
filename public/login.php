@@ -50,7 +50,7 @@ function addUserFromDirectory($rcsid) {
       ":shortname" => ucwords($user->first_name),
       ":fullname" => $user->name,
       ":yog" => getYogFromClass($user->year),
-      ":major" => $user->major
+      ":major" => ucwords($user->major)
     ));
 
     break;
@@ -64,15 +64,11 @@ $client = new User(phpCAS::getUser());
 if (!$client->exists()) {
   $client = addUserFromDirectory(phpCAS::getUser());
 }
-// TODO: Redirect to profile page on success
+
+// TODO: CAS failure condition (we don't have to worry about it so much because
+// CAS will not redirect the browser to this page on common failure cases)
+
+// Login (and user creation) successful, so redirect the user to the profile
+header("Location: userprofile.php");
 
 ?>
-<?php include "resources/head.php"; ?>
-<body>
-  <?php include "resources/topbar.php"; ?>
-  <div id="content">
-    <h2>Welcome, <?=phpCAS::getUser()?></h2>
-  </div>
-  <?php include "resources/footer.php"; ?>
-</body>
-</html>

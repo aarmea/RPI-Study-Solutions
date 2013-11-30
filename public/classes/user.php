@@ -4,13 +4,12 @@ require_once "db/init.php";
 
 $IMAGE_API_URL = "http://www.gravatar.com/avatar";
 
-// TODO: Have this class wrap more functionality (other fields from database,
-// getters/setters)
 class User {
   private $exists = false;
   private $rcsid = "";
   private $shortname = "";
   private $fullname = "";
+  private $altEmail = "";
   private $yog = -1;
   private $major = "";
 
@@ -28,12 +27,37 @@ class User {
     $this->rcsid = $rcsid;
     $this->shortname = $user->shortname;
     $this->fullname = $user->fullname;
+    $this->altEmail = $user->email;
     $this->yog = $user->yog;
     $this->major = $user->major;
   }
 
   public function exists() {
     return $this->exists;
+  }
+
+  public function username() {
+    return $this->rcsid;
+  }
+
+  public function shortname() {
+    return $this->shortname;
+  }
+
+  public function fullname() {
+    return $this->fullname;
+  }
+
+  public function altEmail() {
+    return $this->altEmail;
+  }
+
+  public function yog() {
+    return $this->yog;
+  }
+
+  public function major() {
+    return $this->major;
   }
 
   // Returns the email associated with this user's CAS credentials.
