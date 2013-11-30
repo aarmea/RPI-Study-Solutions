@@ -7,8 +7,25 @@ require_once "auth/cas_init.php";
 $DIRECTORY_REQUEST_URL = "http://rpidirectory.appspot.com/api?q=";
 
 function getYogFromClass($class) {
-  // TODO
-  return 2014;
+  $currentDate = new DateTime;
+  $yog = (int)$currentDate->format("Y");
+  if ((int)$currentDate->format("m") > 5) {
+    $yog += 1;
+  }
+  switch($class) {
+  case "first-year student":
+    $yog += 3;
+    break;
+  case "sophomore":
+    $yog += 2;
+    break;
+  case "junior":
+    $yog += 1;
+    break;
+  case "senior":
+    break;
+  }
+  return $yog;
 }
 
 function addUserFromDirectory($rcsid) {

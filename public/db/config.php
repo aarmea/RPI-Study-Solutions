@@ -6,4 +6,6 @@ $DB_HOST = "localhost";
 $DB_NAME = "rpi_study_solutions";
 $DB_USERNAME = "myadmin";
 $DB_PASSWORD = "myadmin";
+
+date_default_timezone_set("America/New_York");
 ?>
