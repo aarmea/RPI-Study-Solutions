@@ -25,8 +25,8 @@ include "resources/head.php";
       <h3>Next Meeting:</h3>
       <h4><span id="groupName"></span> on <span id="date"></span> at <span id="time"></span></h4>
     </div>
-    <div id="calander">
-      <h3>Calander of meetings</h3>
+    <div id="calendar">
+      <h3>Calendar of meetings</h3>
     </div>
     <div id="notes">
       <h3>Notes to self / Reminders</h3>

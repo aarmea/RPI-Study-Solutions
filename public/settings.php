@@ -10,7 +10,7 @@
     return "Placeholder alt email";
   }
 
-  //Get the avaiable times from database here
+  //Get the available times from database here
   function getAvailableTimes() {
     //Return an array of arrays of [year month day hour]
     return array( array(2013,10,28,8), array(2013,10,28,9) );
@@ -95,10 +95,10 @@
   <div id="content">
     <form method="post" action="settings.php">
       <h2>Settings</h2>
-      <div id="calanderSettings">
-        <h3>Link google calander</h3>
+      <div id="calendarSettings">
+        <h3>Link google calendar</h3>
         <h3>- or -</h3>
-        <h3>Set availibility</h3>
+        <h3>Set availability</h3>
         <div id="timegrid"></div>
       </div>
       <div id="reminderSettings">
