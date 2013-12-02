@@ -26,12 +26,19 @@ $client = new User(phpCAS::getUser());
     <a href="settings.php">Settings</a>
     <div id="divOfGroups">
       <h3>Subscribed Groups:</h3>
-      <ul id="ulOfGroups"></ul>
-      <a href="createGroup.php">Create a group</a>
+      <ul id="ulOfGroups">
+<?
+$groups = $client->groups();
+foreach ($groups as $name => $id) {
+?>
+        <li><a href="group.php?g=<?=$id?>"><?=$name?></a></li>
+<? } ?>
+      <!-- TODO: List of groups you administrate/own -->
+      </ul>
+      <a href="newgroup.php">Create a group</a>
     </div>
     <div id="meetings">
       <h3>Next Meeting:</h3>
-      <h4><span id="groupName"></span> on <span id="date"></span> at <span id="time"></span></h4>
     </div>
     <h3>Calendar of meetings</h3>
     <div id="hoverDay">Hover over a day to see appointments.</div>

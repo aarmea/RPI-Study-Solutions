@@ -12,6 +12,7 @@ class User {
   private $altEmail = "";
   private $yog = -1;
   private $major = "";
+  private $groups = array(); // Array from group name to group id
 
   public function __construct($rcsid) {
     global $db;
@@ -29,6 +30,16 @@ class User {
     $this->altEmail = $user->email;
     $this->yog = $user->yog;
     $this->major = $user->major;
+
+    $query = $db->prepare(
+      "SELECT `groupid`, `groupname`
+      FROM `groups` NATURAL JOIN `group_members`
+      WHERE `rcsid` = :rcsid"
+    );
+    $query->execute(array(":rcsid" => $rcsid));
+    while ($group = $query->fetch()) {
+      $this->groups[$group->groupname] = $group->groupid;
+    }
   }
 
   public function exists() {
@@ -57,6 +68,10 @@ class User {
 
   public function major() {
     return $this->major;
+  }
+
+  public function groups() {
+    return $this->groups;
   }
 
   // Returns the email associated with this user's CAS credentials.

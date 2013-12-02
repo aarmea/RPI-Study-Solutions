@@ -1,16 +1,24 @@
+<?php
+require_once "db/init.php";
+require 'db/config.php';
+require_once "auth/cas_init.php";
+require_once "classes/user.php";
+
+phpCAS::forceAuthentication();
+$client = new User(phpCAS::getUser());
+?>
 <?php include "resources/head.php"; ?>
 <body>
   <?php include "resources/topbar.php"; ?>
   <div id="content">
     <?php
-    require 'config.php';
     if (isset($_POST['t_id'])) {
 
       try {
-          $conn = new PDO('mysql:host=' . $config['DB_HOST'] . ';dbname='. $config['DB_DBNAME'], $config['DB_USERNAME'], $config['DB_PASSWORD']);
+          $conn = new PDO('mysql:host=localhost;dbname=rpi_study_solutions', 'myadmin', 'myadmin');
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $results = $conn->query('SELECT threadName, groupName FROM threads INNER JOIN groups on threads.group_id = groups.g_id WHERE t_id=1');
+          $results = $conn->query('SELECT threadName, groupName FROM threads INNER JOIN groups on threads.group_id = groups.groupid WHERE t_id=1');
           foreach ($results as $row) {
             ?>
             <h2><?php echo $row['groupName']; ?> -- <?php echo $row['threadName']; ?></h2>
@@ -23,13 +31,13 @@
       ?>
       <div id="posts">
         <?php
-        require 'config.php';
+        // require 'config.php';
 
         try {
-          $conn = new PDO('mysql:host=' . $config['DB_HOST'] . ';dbname='. $config['DB_DBNAME'], $config['DB_USERNAME'], $config['DB_PASSWORD']);
+          $conn = new PDO('mysql:host=localhost;dbname=rpi_study_solutions', 'myadmin', 'myadmin');
           $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-          $results = $conn->query('SELECT * FROM posts INNER JOIN user on posts.user_id = user.id WHERE t_id=1');
+          $results = $conn->query('SELECT * FROM posts INNER JOIN users on posts.user_id = users.rcsid WHERE t_id=1');
           foreach ($results as $row) {
          // echo '<pre>';
          // print_r($row);
@@ -38,7 +46,7 @@
             <div id="post-<?php echo $row['p_id']; ?>" class="post">
               <div class="metaPost">
                 <p id="postNum">#<?php echo $row['postNumInThread']; ?></p>
-                <p id="posterName"><?php echo $row['rcs']; ?></p>
+                <p id="posterName"><?php echo $row['rcsid']; ?></p>
                 <p id="timeStamp"><?php echo $row['time']; ?></p>
               </div>
               <p class="postBody"><?php echo $row['postBody']; ?></p>
@@ -73,7 +81,7 @@
         <form action="#" method="post">
           <select name="t_id">
             <?php
-            $conn = new PDO('mysql:host=' . $config['DB_HOST'] . ';dbname='. $config['DB_DBNAME'], $config['DB_USERNAME'], $config['DB_PASSWORD']);
+            $conn = new PDO('mysql:host=localhost;dbname=rpi_study_solutions', 'myadmin', 'myadmin');
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $results = $conn->query('SELECT * FROM threads');
             foreach ($results as $row) {

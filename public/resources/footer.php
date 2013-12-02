@@ -1,3 +1,3 @@
 <div id="footer">
-  <p>Contact Us!</p>
+  <p><a href="mailto:rpi-study-solutions@gmail.com">Contact Us</a><br> </p>
 </div>
