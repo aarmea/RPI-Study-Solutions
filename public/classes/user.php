@@ -24,7 +24,7 @@ class User {
     $user = $query->fetch();
     if (!$user) return;
 
-    $exists = true;
+    $this->exists = true;
     $this->rcsid = $rcsid;
     $this->shortname = $user->shortname;
     $this->fullname = $user->fullname;

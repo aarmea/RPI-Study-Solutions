@@ -7,6 +7,6 @@
     <li><a href="./settings.php">settings</a></li>
     <li><a href="./createThread.php">Create Thread</a></li>
     <li><a href="./login.php">Log in</a></li>
-    <li><a href="./listOfGroups.php">list of groups</a></li>
+    <li><a href="./allgroups.php">list of groups</a></li>
   </ul>
 </div>
