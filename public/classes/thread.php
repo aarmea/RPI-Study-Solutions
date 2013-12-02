@@ -3,30 +3,30 @@ require_once "auth/config.php";
 require_once "db/init.php";
 
 class Thread {
-  private $threadid = -1;
+  private $t_id = -1;
   private $threadname = "";
   private $owner = ""; // String that is the RCSid of the thread creator
 
-  public function __construct($threadid) {
+  public function __construct($t_id) {
     global $db;
     $query = $db->prepare(
-      "SELECT `threadid`, `threadname`, `owner` FROM `groups` WHERE `threadid` = :threadid"
+      "SELECT `t_id`, `threadname`, `owner` FROM `groups` WHERE `t_id` = :t_id"
     );
-    $query->execute(array(":threadid" => $threadid));
+    $query->execute(array(":t_id" => $t_id));
     $thread = $query->fetch();
     if (!$query) return;
 
-    $this->threadid = $threadid;
+    $this->t_id = $t_id;
     $this->threadname = $thread->threadname;
     $this->owner = $thread->owner;
   }
 
   public function exists() {
-    return $this->threadid > 0;
+    return $this->t_id > 0;
   }
 
   public function id() {
-    return $this->threadid;
+    return $this->t_id;
   }
 
   public function name() {
@@ -41,10 +41,10 @@ class Thread {
 function listThreads() {
   global $db; // PDO defined in "db/init.php"
   $threads = array();
-  $query = $db->prepare("SELECT `threadid`, `threadname` FROM `threads`");
+  $query = $db->prepare("SELECT `t_id`, `threadname` FROM `threads`");
   $query->execute();
   while ($thread = $query->fetch()) {
-    $threads[$thread->threadname] = $thread->threadid;
+    $threads[$thread->threadname] = $thread->t_id;
   }
   return $threads;
 }
@@ -56,7 +56,7 @@ function addthread($threadname, $owner) {
     "INSERT INTO `threads` (`threadname`, `owner`) VALUES (:threadname, :owner)"
   );
   $query->execute(array(":threadname" => $threadname, ":owner" => $owner));
-  $threadid = $db->lastInsertId("threadid");
-  return new Thread($threadid);
+  $t_id = $db->lastInsertId("t_id");
+  return new Thread($t_id);
 }
 ?>

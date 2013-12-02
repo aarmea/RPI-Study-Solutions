@@ -8,12 +8,12 @@ class Post {
   private $userid = ""; // String that is the RCSid of the poster
   private $timeStamp = "";
   private $postBody = "";
-  private $postNumber = "";
+  private $postNumInThread = "";
 
   public function __construct($postid) {
     global $db;
     $query = $db->prepare(
-      "SELECT `postid`, `threadid`, `userid`, `timeStamp`, `postBody`, `postNumber` FROM `posts` WHERE `postid` = :postid"
+      "SELECT `postid`, `threadid`, `userid`, `timeStamp`, `postBody`, `postNumInThread` FROM `posts` WHERE `postid` = :postid"
     );
     $query->execute(array(":postid" => $postid));
     $thread = $query->fetch();
@@ -24,7 +24,7 @@ class Post {
     $this->userid = $thread->userid;
     $this->timeStamp = $thread->timeStamp;
     $this->postBody = $thread->postBody;
-    $this->postNumber = $thread->postNumber;
+    $this->postNumInThread = $thread->postNumInThread;
   }
 
   public function exists() {
@@ -51,8 +51,8 @@ class Post {
     return $this->postBody;
   }
 
-  public function getPostNumber(){
-    return $this->postNumber;
+  public function getpostNumInThread(){
+    return $this->postNumInThread;
   }  
 }
 
@@ -73,17 +73,16 @@ function arrayOfPosts($threadid) {
 
 function addPost($threadid, $poster, $postBody) {
   global $db;
-  $postNumber = -1;
-
-  $query = $db->prepare("SELECT MAX(`postNumber`) FROM `groups` WHERE `threadid` = :threadid");
+  $postNumInThread = -1;
+  $query = $db->prepare("SELECT MAX(`postNumInThread`) FROM `posts` WHERE `t_id` = :threadid");
   $query->execute(array(":threadid" => $threadid));
-  $postNumber = $query->fetch()['postNumber'] + 1;
-
+  $postNumInThread = $query->fetch() + 2;
   $query = $db->prepare(
-    "INSERT INTO `posts` (`threadid`, `userid`, `postBody`, `postNumber`) VALUES (:threadname, :userid, :postBody, :postNumber)"
+    "INSERT INTO `posts` (`t_id`, `user_id`, `postBody`, `postNumInThread`) VALUES (:threadid, :userid, :postBody, :postNumInThread)"
   );
-  $query->execute(array(":threadid" => $threadid, ":userid" => $userid, ":postNumber" => $postNumber));
-  $postid = $db->lastInsertId("postid");
-  return new Thread($postid);
+  $query->execute(array(":threadid" => $threadid, ":userid" => $poster, ":postBody" => $postBody, ":postNumInThread" => $postNumInThread));
+
+  // $postid = $db->lastInsertId("postid");
+  // return new Thread($postid);
 }
 ?>

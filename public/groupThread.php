@@ -1,3 +1,12 @@
+<?php
+require_once "db/init.php";
+require 'db/config.php';
+require_once "auth/cas_init.php";
+require_once "classes/user.php";
+
+phpCAS::forceAuthentication();
+$client = new User(phpCAS::getUser());
+?>
 <?php include "resources/head.php"; ?>
 <body>
   <?php include "resources/topbar.php"; ?>
