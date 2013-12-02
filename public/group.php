@@ -1,6 +1,10 @@
 <?
+require_once "auth/cas_init.php";
+
 require_once "classes/group.php";
 $group = new Group($_GET["g"]);
+
+phpCAS::forceAuthentication();
 
 include "resources/head.php";
 ?>

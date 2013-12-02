@@ -1,5 +1,9 @@
 <?php
+require_once "auth/cas_init.php";
+
 require_once "classes/group.php";
+
+phpCAS::forceAuthentication();
 
 include "resources/head.php";
 ?>
