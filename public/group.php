@@ -8,6 +8,7 @@ include "resources/head.php";
   <?php include "resources/topbar.php"; ?>
   <div id="content">
 <? if ($group->exists()) { ?>
+    <h1><?=$group->name()?></h1>
     <section id="calendar">
       <!-- TODO -->
     </section>
