@@ -1,19 +1,36 @@
 <?php
 
+  require_once "db/init.php";
+  require 'db/config.php';
+  require_once "auth/cas_init.php";
+  require_once "classes/user.php";
+
+  phpCAS::forceAuthentication();
+  $client = new User(phpCAS::getUser());
+  $rcsid = $client->username();
+
   //Get email from database here
   function getEmail() {
-    return "Placeholder Email";
-  }
+    
+    global $client;
+    return $client->altEmail();
 
-  //Get alt email from database here
-  function getAltEmail() {
-    return "Placeholder alt email";
   }
 
   //Get the available times from database here
   function getAvailableTimes() {
+
+    global $db;
+    global $rcsid;
+
+    $dbh = $db->prepare("SELECT year,month,hour,day FROM available_times WHERE rcsid=:rcsid");
+    $dbh->execute(array(":rcsid" => $rcsid));
+    $result = $dbh->fetchAll();
+
+    return $result;
+
     //Return an array of arrays of [year month day hour]
-    return array( array(2013,10,28,8), array(2013,10,28,9) );
+    //return array( array(2013,11,28,8), array(2013,11,28,9) );
   }
 
   //Get notifications from database here
@@ -29,33 +46,11 @@
   $day = $date['mday'];
   $time_arr = getAvailableTimes();
 
-  //Update the database here with new values
-  if(isset($_POST['SubmitChanges'])) {
-
-    if(isset($_POST['rem_set_1']))
-      echo $_POST['rem_set_1'] . "<br>";
-    if(isset($_POST['rem_set_2']))
-      echo $_POST['rem_set_2'] . "<br>";
-    if(isset($_POST['rem_set_3']))
-      echo $_POST['rem_set_3'] . "<br>";
-    if(isset($_POST['rem_set_3']))
-      echo $_POST['rem_set_3'] . "<br>";
-    if(isset($_POST['email']))
-      echo $_POST['email'] . "<br>";
-    if(isset($_POST['alt_email']))
-      echo $_POST['alt_email'] . "<br>";
-          
-  }
-  else
-  {
-    //Load stuff from database into DOM here...
-  }
-
 ?>
 
 <?php include "resources/head.php"; ?>
 <body>
-  <?php include "resources/topbar.php"; ?>
+  <?php include "resources/topbar.php";?>
 
   <script type='text/javascript'>
     var year = <?php echo $year ?>;
@@ -68,12 +63,12 @@
         for($i=0;$i<count($time_arr);$i++) {
           
           $js_ret_arr = $js_ret_arr . '[';
-          for($j=0;$j<4;$j++) {
-            $js_ret_arr = $js_ret_arr . $time_arr[$i][$j];
-            if($j != 3)
-              $js_ret_arr = $js_ret_arr . ',';
-          }
+          $js_ret_arr = $js_ret_arr . $time_arr[$i]->year . ",";
+          $js_ret_arr = $js_ret_arr . $time_arr[$i]->month . ",";
+          $js_ret_arr = $js_ret_arr . $time_arr[$i]->day . ",";
+          $js_ret_arr = $js_ret_arr . $time_arr[$i]->hour;
           $js_ret_arr = $js_ret_arr . ']';
+          
           if($i != count($time_arr)-1)
             $js_ret_arr = $js_ret_arr . ',';
         }
@@ -83,13 +78,11 @@
 
       ?>;
 
-    /*
     for(var i=0;i<available_times.length;i++) {
       for(var j=0;j<4;j++){
         console.log(available_times[i][j]);
       }
     }
-    */
 
   </script>
   <script src="whenisgood/whenisgood.js"></script>
@@ -98,8 +91,6 @@
     <form id="post_settings" action="post_settings.php" method="post">
       <h2>Settings</h2>
       <div id="calendarSettings">
-        <h3>Link google calendar</h3>
-        <h3>- or -</h3>
         <h3>Set availability</h3>
         <div id="timegrid"></div>
       </div>

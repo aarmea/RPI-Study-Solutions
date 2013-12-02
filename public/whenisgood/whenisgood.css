@@ -2,11 +2,15 @@
    background: #0F0; 
 }
 .cell {
-  cursor: default;
 }
 
 table{
+    cursor: default;
     border: 1px solid black;
     table-layout: fixed;
     width: 1200px;
+    -moz-user-select: none; 
+    -khtml-user-select: none; 
+    -webkit-user-select: none; 
+    -o-user-select: none; 
 }

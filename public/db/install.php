@@ -33,6 +33,18 @@ try {
   $dbh->exec($sql);
   echo "Successfully created the users table.\n";
 
+  $sql = "CREATE TABLE IF NOT EXISTS `available_times` (
+    `rcsid` VARCHAR(10) NOT NULL,
+    `year` INT NOT NULL,
+    `month` TINYINT NOT NULL,
+    `day` TINYINT NOT NULL,
+    `hour` TINYINT NOT NULL,
+    FOREIGN KEY (`rcsid`) REFERENCES `users`(`rcsid`) 
+    ON UPDATE CASCADE ON DELETE CASCADE
+    ) ENGINE=InnoDB";
+  $dbh->exec($sql);
+  echo "Successfully created the available_times table.\n";
+
   $sql = "CREATE TABLE IF NOT EXISTS `groups` (
     `groupid` INT UNSIGNED NOT NULL AUTO_INCREMENT,
     `groupname` varchar(255) NOT NULL,
