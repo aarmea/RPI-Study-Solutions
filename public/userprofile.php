@@ -29,8 +29,15 @@ include "resources/head.php";
     <div id="divOfGroups">
       <h3>list of subscribed groups</h3>
       <!-- TODO: Populate this list -->
-      <ul id="ulOfGroups"></ul>
+      <ul id="ulOfGroups">
+<?
+$groups = $client->groups();
+foreach ($groups as $name => $id) {
+?>
+        <li><a href="group.php?g=<?=$id?>"><?=$name?></a></li>
+<? } ?>
       <!-- TODO: List of groups you administrate/own -->
+      </ul>
     </div>
     <div id="">
       <h3>Next Meeting:</h3>
