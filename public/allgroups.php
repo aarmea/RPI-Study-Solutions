@@ -12,7 +12,7 @@ include "resources/head.php";
 $groups = listGroups();
 foreach ($groups as $name => $id) {
 ?>
-      <li><a href="group.php?group=<?=$id?>"><?=$name?></a></li>
+      <li><a href="group.php?g=<?=$id?>"><?=$name?></a></li>
 <? } ?>
     </ul>
   </div>
