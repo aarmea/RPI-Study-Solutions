@@ -5,6 +5,8 @@ require_once "classes/user.php";
 phpCAS::forceAuthentication();
 $client = new User(phpCAS::getUser());
 
+// TODO: A way to show profiles specified with $_GET["u"]
+
 include "resources/head.php";
 ?>
 <body>
@@ -18,8 +20,9 @@ include "resources/head.php";
     <a href="">Settings</a>
     <div id="divOfGroups">
       <h3>list of subscribed groups</h3>
+      <!-- TODO: Populate this list -->
       <ul id="ulOfGroups"></ul>
-      <a href="">Create Group</a>
+      <!-- TODO: List of groups you administrate/own -->
     </div>
     <div id="">
       <h3>Next Meeting:</h3>
