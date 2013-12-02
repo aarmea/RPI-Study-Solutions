@@ -16,7 +16,10 @@ $client = new User(phpCAS::getUser());
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 </head>
   <body>
-    <?php include "resources/topbar.php"; ?>
+    <div class="logoImage">
+  <img src="resources/images/newphoto.png">
+</div>
+    <?php include "resources/topbarfinal.php"; ?>
     <div id="content">
     <h2>Welcome, <?=$client->shortname()?></h2>
      <img src="<?=$client->imageURL()?>">
