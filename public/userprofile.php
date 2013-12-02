@@ -11,15 +11,12 @@ $client = new User(phpCAS::getUser());
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="resources/calendar.css">
-    <link rel="stylesheet" type="text/css" href="resources/stylefinal.css">
+    <link rel="stylesheet" type="text/css" href="resources/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 </head>
   <body>
-    <div class="logoImage">
-  <img src="resources/images/newphoto.png">
-</div>
-    <?php include "resources/topbarfinal.php"; ?>
+    <?php include "resources/topbar.php"; ?>
     <div id="content">
     <h2>Welcome, <?=$client->shortname()?></h2>
      <img src="<?=$client->imageURL()?>">
