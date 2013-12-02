@@ -1,0 +1,91 @@
+body {
+	margin:0;
+	padding:0;
+	font: normal 0.6em sans-serif,Arial;
+	width: 100%;
+}
+
+.description {padding-left: 40px;}
+h1 {
+padding-left: 10px;
+font: normal 18px Georgia, "Times New Roman", Times, serif;
+background-color:  rgb(249, 249, 249)
+}
+
+.jimgMenu {
+	position:relative;
+	float: right;
+	margin: -203px 0px 0px 935px;
+	padding: 0px;
+	width:665px;
+	height:200px;
+	overflow: hidden;
+	margin-right: 10%;
+ 	margin-left:5%;
+}
+
+.jimgMenu ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+	display: block;
+	height: 200px;
+	position: relative;
+	}
+	
+.jimgMenu ul li {
+	width: 95px;
+	float: left;
+	display: block;
+	overflow: hidden;
+}
+
+.jimgMenu ul li a {
+	text-indent: -1000px;
+	background:#fff repeat scroll 0%;
+	border-right: 2px solid #fff;
+	cursor:pointer;
+	display:block;
+	overflow: hidden;
+	height: 200px;
+}
+
+.jimgMenu ul li#logo a {
+	background: url(images/campusfinal.jpg) repeat scroll 0%;
+  
+}
+
+.jimgMenu ul li#people a {
+	background: url(images/grouptalkingfinal.jpg) repeat scroll 0%;
+
+}
+
+.jimgMenu ul li#post a {
+	background: url(images/post2.jpg) repeat scroll 0%;
+  
+}
+
+.jimgMenu ul li#explore a {
+	background: url(images/explore2.jpg) repeat scroll 0%;
+
+}
+
+.jimgMenu ul li#profile a {
+	background: url(images/profile2.jpg) repeat scroll 0%;
+	border-right-style: none;
+}
+
+.jimgMenu ul li#setting a {
+	background: url(images/gears4.jpg) repeat scroll 0%;
+	border-right-style: none;
+}
+
+.jimgMenu ul li#login a {
+	background: url(images/city2.jpg) repeat scroll 0%;
+	border-right-style: none;
+}
+
+
+.clear {
+	clear: both;
+}
