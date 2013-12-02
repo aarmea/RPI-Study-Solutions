@@ -10,6 +10,7 @@ include "resources/head.php";
 <body>
   <?php include "resources/topbar.php"; ?>
   <div id="content">
+    <a href="newgroup.php">Create a new group</a>
     <h2>Available Groups:</h2>
     <ul>
 <?
