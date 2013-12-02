@@ -6,7 +6,6 @@ $DIRECTORY_API_URL = "http://rpidirectory.appspot.com/api";
 $IMAGE_API_URL = "http://www.gravatar.com/avatar";
 
 class User {
-  private $exists = false;
   private $rcsid = "";
   private $shortname = "";
   private $fullname = "";
@@ -24,7 +23,6 @@ class User {
     $user = $query->fetch();
     if (!$user) return;
 
-    $this->exists = true;
     $this->rcsid = $rcsid;
     $this->shortname = $user->shortname;
     $this->fullname = $user->fullname;
@@ -34,7 +32,7 @@ class User {
   }
 
   public function exists() {
-    return $this->exists;
+    return !empty($this->rcsid);
   }
 
   public function username() {
