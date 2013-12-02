@@ -97,8 +97,18 @@ function removeSeconds(s) {
 
 })(jQuery);
 
+var submitted = false;
+
 //POST results to whenisgood.php
 function onSubmit() {
+
+  event.preventDefault();
+
+  if(submitted == true) {
+    return false;
+  }
+
+  submitted = true;
 
   //This is an array of arrays of timeslots
   //where each timeslot's index-value pairs are:
@@ -118,16 +128,34 @@ function onSubmit() {
     allTimesArr.push(timeArr);
   }
 
+  /*
   for(var i=0;i<allTimesArr.length;i++) {
     for(var j=0;j<allTimesArr[i].length;j++) {
       console.log(allTimesArr[i][j]);
     }
     console.log('');
   }
+  */
 
   console.log("ABOUT TO POST");
 
-  $.post('settings.php', {'times': '0'} );
+  var string_arr = JSON.stringify(allTimesArr);
+  $('#posthidden').val(string_arr);
+  var form = $("#post_settings").serialize();
+
+  $.ajax({    
+
+        url:'post_settings.php',
+        type: 'post',
+        data: form,
+        success: function(data) 
+        {
+          $("#refreshed").html(data);
+          submitted = false;
+        }
+    });
+
+  return false;
 
 }
 

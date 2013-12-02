@@ -19,7 +19,7 @@ $client = new User(phpCAS::getUser());
     <?php include "resources/topbar.php"; ?>
     <div id="content">
     <h2>Welcome, <?=$client->shortname()?></h2>
-    <img src="<?=$client->imageURL()?>">
+     <img src="<?=$client->imageURL()?>">
     <p><?=$client->fullname()?>
       <span id="username"><?=$client->username()?></span></p>
     <p><?=$client->major()?>, Class of <?=$client->yog()?></p>

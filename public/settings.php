@@ -19,12 +19,14 @@
   //Get notifications from database here
   function getNotifications() {
     //0 means not checked. 1 means checked
-    return [0,0,0];
+    return array(0,0,0);
   }
 
-  $year = getdate()['year'];
-  $mon = getdate()['mon'];
-  $day = getdate()['mday'];
+  $date = getdate();
+
+  $year = $date['year'];
+  $mon = $date['mon'];
+  $day = $date['mday'];
   $time_arr = getAvailableTimes();
 
   //Update the database here with new values
@@ -93,7 +95,7 @@
   <script src="whenisgood/whenisgood.js"></script>
   <link type='text/css' rel="stylesheet" href="whenisgood/whenisgood.css"></link>
   <div id="content">
-    <form method="post" action="settings.php">
+    <form id="post_settings" action="post_settings.php" method="post">
       <h2>Settings</h2>
       <div id="calendarSettings">
         <h3>Link google calendar</h3>
@@ -123,22 +125,14 @@
               echo '<input type="checkbox" name="rem_set_3" value="op3" checked>op3<br>';
 
           ?>
-        <h3>Change primary email for reminders</h3>
+        <h3>Change alt email for reminders</h3>
           <input type="input" name="email" value= <?php echo '"' . getEmail() . '"'; ?> />
-        <h3>add alternative email</h3>
-          <input type="input" name="alt_email" value= <?php echo '"' . getAltEmail() . '"'; ?> />
+        <input id="posthidden" type="hidden" name="dates" />
         <br/><br/><br/>
-          <input type="submit" name="SubmitChanges" value="Submit Changes" />
+          <input id="submit" type="submit" name="SubmitChanges" value="Submit Changes" />
       </form>
 
-      <button id="submit">JS_SUBMIT</button>
-
       <div id="refreshed">
-        <?php
-        if(isset($_POST['SubmitChanges'])) {
-          echo "Settings saved";
-        }
-        ?>
       </div>
 
     </div>
