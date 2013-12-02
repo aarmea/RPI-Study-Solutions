@@ -27,6 +27,7 @@ try {
     `email` VARCHAR(256),
     `yog` YEAR,
     `major` VARCHAR(64),
+    `notes` text(1000),
     PRIMARY KEY (`rcsid`)
     ) ENGINE=InnoDB";
   $dbh->exec($sql);
