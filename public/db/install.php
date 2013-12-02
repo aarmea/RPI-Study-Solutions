@@ -44,7 +44,6 @@ try {
     `groupid` INT UNSIGNED NOT NULL,
     `rcsid` VARCHAR(10) NOT NULL,
     `is_owner` BOOL DEFAULT FALSE,
-    PRIMARY KEY (`groupid`),
     FOREIGN KEY (`groupid`) REFERENCES `groups`(`groupid`)
     ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (`rcsid`) REFERENCES `users`(`rcsid`)
