@@ -22,15 +22,21 @@ class Group {
     $this->groupname = $group->groupname;
 
     $query = $db->prepare(
-      "SELECT `rcsid`, `is_owner` FROM `group_members`
+      "SELECT `rcsid`, `fullname`, `is_owner`
+      FROM `group_members` NATURAL JOIN `users`
       WHERE `groupid` = :groupid"
     );
+    $query->execute(array(":groupid" => $groupid));
     while ($member = $query->fetch()) {
       if ($member->is_owner) {
-        $this->owners[$member->rcsid] = $member->rcsid;
+        $this->owners[$member->rcsid] = $member->fullname;
       }
-      $this->members[$member->rcsid] = $member->rcsid;
+      $this->members[$member->rcsid] = $member->fullname;
     }
+  }
+
+  public function exists() {
+    return $this->groupid > 0;
   }
 
   public function id() {
