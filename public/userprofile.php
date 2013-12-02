@@ -61,7 +61,7 @@ $client = new User(phpCAS::getUser());
       $res->execute(array(':username'=>$client->username()));
       $results=$res->fetch();
       ?>
-      <div id="savedNotes"><p>Saved Notes:<?php echo $results; ?></p></div>
+      <div id="savedNotes"><p>Saved Notes:   <?php print_r($results); ?></p></div>
       <!-- create new content -->
       <form method="post" class="notes">
       <textarea id="notes" name="notes" rows="10" cols="100" placeholder="My notes..."></textarea>

@@ -11,6 +11,8 @@
 	border-spacing: 0;
 }
 
+td:hover{background-color:#00FF00;}
+
 /* Calendar Wrapper */
 .ui-datepicker {
 	display: none;
@@ -103,7 +105,7 @@
 	display: block;
 	width: 26px;
 	outline: none;
-
+	background:transparent;
 	text-decoration: none;
 	color: black;
 	
@@ -114,7 +116,9 @@
 .ui-datepicker-calendar .ui-state-hover {
 	color: black;
 	font-size: 120%;
+	background:transparent;
 }
+
 
 /* Other Months Days*/
 .ui-datepicker-other-month .ui-state-default { color: #565656; }
