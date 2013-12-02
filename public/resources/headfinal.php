@@ -9,7 +9,7 @@
 </head>
 <body>
 <div class="logoImage">
-	<img src="resources/images/newphoto.png">
+	<a href="index.php"><img src="resources/images/newphoto.png"></a>
 </div>
 
 </body>
