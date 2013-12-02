@@ -39,7 +39,6 @@ foreach ($groups as $name => $id) {
     </div>
     <div id="meetings">
       <h3>Next Meeting:</h3>
-      <h4><span id="groupName"></span> on <span id="date"></span> at <span id="time"></span></h4>
     </div>
     <h3>Calendar of meetings</h3>
     <div id="hoverDay">Hover over a day to see appointments.</div>
