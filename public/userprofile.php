@@ -55,14 +55,8 @@ $client = new User(phpCAS::getUser());
     </script>
     <div id="notes">
       <h3>Notes to self / Reminders</h3>
-      <!-- post old content if it exists -->
-      <?php 
-      $res = $db->prepare("SELECT `notes` FROM `users` WHERE `rcsid` = :username");
-      $res->execute(array(':username'=>$client->username()));
-      $results=$res->fetch();
-      ?>
-      <div id="savedNotes"><p>Saved Notes:<br><?php echo $results->notes; ?></p></div>
       <!-- create new content -->
+      <p>Warning: Saving new notes will replace your old notes.</p>
       <form method="post" class="notes">
       <textarea id="notes" name="notes" rows="10" cols="100" placeholder="My notes..."></textarea>
       <input type="submit" name="save" value="Save" action="userprofile.php"/>
@@ -74,6 +68,13 @@ $client = new User(phpCAS::getUser());
         $query->execute(array(':username'=>$client->username(),
                               ':text'=>$_POST['notes']));
       }?>
+      <!-- post old content if it exists -->
+      <?php 
+      $res = $db->prepare("SELECT `notes` FROM `users` WHERE `rcsid` = :username");
+      $res->execute(array(':username'=>$client->username()));
+      $results=$res->fetch();
+      ?>
+      <div id="savedNotes"><p>Saved Notes:<br><?php echo $results->notes; ?></p></div>
     </div>
   </div>
   <?php include "resources/footer.php"; ?>
