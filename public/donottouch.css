@@ -22,7 +22,8 @@ background-color:  rgb(249, 249, 249)
 	overflow: hidden;
 	margin-right: 10%;
  	margin-left:5%;
-}
+ 	margin-top: 10px;
+ }
 
 .jimgMenu ul {
 	list-style: none;
