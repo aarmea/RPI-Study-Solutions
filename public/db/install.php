@@ -3,22 +3,23 @@ require_once "config.php";
 echo "<html><pre>";
 
 try {
-  $dbh = new PDO("mysql:host=$DB_HOST", $DB_USERNAME, $DB_PASSWORD);
+  print_r($config);
+  $dbh = new PDO("mysql:host=".$config['$DB_HOST'], $config['DB_USERNAME'], $config['DB_PASSWORD']);
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   echo "Successfully connected to the database server\n";
 
-  $dbh->exec("CREATE DATABASE if not exists `$DB_NAME`
-    DEFAULT CHARACTER SET utf8
-    DEFAULT COLLATE utf8_general_ci;")
-  or die(print_r($dbh->errorInfo(), true));
-} catch (PDOException $e) {
-  die("DB ERROR: ". $e->getMessage());
-}
+  $db_name = $config['DB_DBNAME'];
+  $dbh->exec("CREATE DATABASE `".$db_name."` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;");
+  echo "Successfully created database ".$db_name."\n";
 
+  // or die(print_r($dbh->errorInfo(), true));
+} catch (PDOException $e) {
+  // die("DB ERROR: ". $e->getMessage());
+  echo "DB ERROR: ". $e->getMessage();
+}
 try {
-  $sql = "USE $DB_NAME";
+  $sql = "USE $db_name";
   $dbh->exec($sql);
-  echo "Successfully created database $DB_NAME.\n";
 
   $sql = "CREATE TABLE IF NOT EXISTS `users` (
     `rcsid` VARCHAR(10) NOT NULL,
@@ -52,11 +53,11 @@ try {
   $dbh->exec($sql);
   echo "Successfully created the group membership table.\n";
 
-  /*
+  
   $sql = "CREATE TABLE IF NOT EXISTS `posts` (
     `p_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
     `t_id` int(10) unsigned NOT NULL,
-    `user_id` int(10) unsigned NOT NULL,
+    `user_id` VARCHAR(10) NOT NULL,
     `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `postBody` varchar(3000) NOT NULL,
     `postNumInThread` int(10) unsigned NOT NULL,
@@ -65,25 +66,29 @@ try {
     KEY `user_id` (`user_id`)
     ) ENGINE=InnoDB";
   $dbh->exec($sql);
+  echo "Successfully created the posts table.\n";
 
   $sql = "CREATE TABLE IF NOT EXISTS `threads` (
     `t_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-    `group_id` int(10) unsigned NOT NULL,
+    `group_id` INT UNSIGNED NOT NULL,
     `threadName` varchar(255) NOT NULL,
     PRIMARY KEY (`t_id`),
     KEY `group_id` (`group_id`)
     ) ENGINE=InnoDB";
   $dbh->exec($sql);
+  echo "Successfully created the threads table.\n";
 
   $sql = "ALTER TABLE `posts`
   ADD CONSTRAINT `posts_ibfk_1` FOREIGN KEY (`t_id`) REFERENCES `threads` (`t_id`),
-  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)";
+  ADD CONSTRAINT `posts_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`rcsid`)";
   $dbh->exec($sql);
+  echo "Successfully linked posts.\n";
 
   $sql = "ALTER TABLE `threads`
-  ADD CONSTRAINT `threads_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`g_id`)";
+  ADD CONSTRAINT `threads_ibfk_1` FOREIGN KEY (`group_id`) REFERENCES `groups` (`groupid`)";
   $dbh->exec($sql);
-   */
+  echo "Successfully linked threads.\n";
+   
 } catch (PDOException $e) {
   exit("Database error:\n" . $e->getMessage());
 }
