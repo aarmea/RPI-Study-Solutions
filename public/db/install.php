@@ -3,22 +3,23 @@ require_once "config.php";
 echo "<html><pre>";
 
 try {
-  $dbh = new PDO("mysql:host=$DB_HOST", $DB_USERNAME, $DB_PASSWORD);
+  print_r($config);
+  $dbh = new PDO("mysql:host=".$config['$DB_HOST'], $config['DB_USERNAME'], $config['DB_PASSWORD']);
   $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   echo "Successfully connected to the database server\n";
 
-  $dbh->exec("CREATE DATABASE if not exists `$DB_NAME`
-    DEFAULT CHARACTER SET utf8
-    DEFAULT COLLATE utf8_general_ci;")
-  or die(print_r($dbh->errorInfo(), true));
-} catch (PDOException $e) {
-  die("DB ERROR: ". $e->getMessage());
-}
+  $db_name = $config['DB_DBNAME'];
+  $dbh->exec("CREATE DATABASE `".$db_name."` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;");
+  echo "Successfully created database ".$db_name."\n";
 
+  // or die(print_r($dbh->errorInfo(), true));
+} catch (PDOException $e) {
+  // die("DB ERROR: ". $e->getMessage());
+  echo "DB ERROR: ". $e->getMessage();
+}
 try {
-  $sql = "USE $DB_NAME";
+  $sql = "USE $db_name";
   $dbh->exec($sql);
-  echo "Successfully created database $DB_NAME.\n";
 
   $sql = "CREATE TABLE IF NOT EXISTS `users` (
     `rcsid` VARCHAR(10) NOT NULL,
