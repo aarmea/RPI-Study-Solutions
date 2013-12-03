@@ -15,10 +15,7 @@ $client = new User(phpCAS::getUser());
     if (isset($_POST['t_id'])) {
 
       try {
-          $conn = new PDO('mysql:host=localhost;dbname=rpi_study_solutions', 'myadmin', 'myadmin');
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-          $results = $conn->query('SELECT threadName, groupName FROM threads INNER JOIN groups on threads.group_id = groups.groupid WHERE t_id=1');
+          $results = $db->query('SELECT threadName, groupName FROM threads INNER JOIN groups on threads.group_id = groups.groupid WHERE t_id=1');
           foreach ($results as $row) {
             ?>
             <h2><?php echo $row['groupName']; ?> -- <?php echo $row['threadName']; ?></h2>
@@ -34,10 +31,7 @@ $client = new User(phpCAS::getUser());
         // require 'config.php';
 
         try {
-          $conn = new PDO('mysql:host=localhost;dbname=rpi_study_solutions', 'myadmin', 'myadmin');
-          $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-          $results = $conn->query('SELECT * FROM posts INNER JOIN users on posts.user_id = users.rcsid WHERE t_id=1');
+          $results = $db->query('SELECT * FROM posts INNER JOIN users on posts.user_id = users.rcsid WHERE t_id=1');
           foreach ($results as $row) {
          // echo '<pre>';
          // print_r($row);
@@ -81,9 +75,7 @@ $client = new User(phpCAS::getUser());
         <form action="#" method="post">
           <select name="t_id">
             <?php
-            $conn = new PDO('mysql:host=localhost;dbname=rpi_study_solutions', 'myadmin', 'myadmin');
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $results = $conn->query('SELECT * FROM threads');
+            $results = $db->query('SELECT * FROM threads');
             foreach ($results as $row) {
              ?>
              <option value="<?php echo $row['t_id']; ?>"><?php echo $row['threadName']; ?></option>
