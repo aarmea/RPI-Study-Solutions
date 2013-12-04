@@ -36,9 +36,31 @@ $client = new User(phpCAS::getUser());
       <a href="newgroup.php">Create a group</a>
     </div>
     <div id="meetings">
-      <h3>Next Meeting:</h3>
+        <?php
+      $res = $db->prepare("SELECT * FROM group_meetings
+        INNER JOIN group_members ON group_members.rcsid = :username
+        ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
+                  group_meetings.hour,group_meetings.min " );
+      $res->execute(array(':username'=>$client->username()));
+      $results=$res->fetch();
+      $index='0';
+      if(sizeof($results)==0) echo "<h3>No meetings are scheduled</h3>";
+      else
+      {
+        foreach ($results as $row) 
+        {
+          $year[$index]=$results->year;
+          $month[$index]=$results->month;
+          $day[$index]=$results->day;
+          $hour[$index]=$results->hour;
+          $min[$index]=$results->minute;
+        }
+        echo '<h3>Next Meeting: '.$month['0'].' '.$day['0'].' '.$year['0']
+              .' at '.$hour['0'].':'.$min['0'].'</h3>';
+      }
+      ?>
     </div>
-    <h3>Calendar of meetings</h3>
+    <h3>Calendar</h3>
     <div id="hoverDay">Hover over a day to see appointments.</div>
     <div id="calendar"></div>
     <script src="js/calendar.js"></script>
