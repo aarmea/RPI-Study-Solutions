@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<?php include "resources/headfinal.php"; ?>
+<?php include "resources/head.php"; ?>
 <html>
 <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 <body>
-  <?php include "resources/topbarfinal.php"; ?>
+  <?php include "resources/topbar.php"; ?>
   <div id="content">
   <div id="aboutDiv2">
     <h2>Project Summary</h2>

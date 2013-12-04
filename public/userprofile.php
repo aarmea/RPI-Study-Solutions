@@ -15,6 +15,7 @@ $client = new User(phpCAS::getUser());
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
     <script src="js/profile.js"></script>
   </head>
+  <?php include "resources/head.php"; ?>
   <body>
     <?php include "resources/topbar.php"; ?>
     <div id="content">
