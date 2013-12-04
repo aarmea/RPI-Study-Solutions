@@ -86,7 +86,7 @@ try {
   PRIMARY KEY (`t_id`),
   FOREIGN KEY (`group_id`) REFERENCES `groups`(`groupid`)
   ON UPDATE CASCADE ON DELETE CASCADE
-  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;";
+  ) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
   $dbh->exec($sql);
 
   echo "Successfully created the threads table.\n";
