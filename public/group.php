@@ -20,9 +20,35 @@ phpCAS::forceAuthentication();
   <div id="content">
 <? if ($group->exists()) { ?>
     <h1><?=$group->name()?></h1>
+    <div id="meetings">
+        <?php
+      $res = $db->prepare("SELECT * FROM group_meetings
+        INNER JOIN groups ON groups.groupid = :groupid
+        ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
+                  group_meetings.hour,group_meetings.min " );
+      $res->execute(array(':groupid'=>$group->id()));
+      $results=$res->fetch();
+      $index='0';
+      if(sizeof($results)==0) echo "<h3>No meetings are scheduled</h3>";
+      else
+      {
+        foreach ($results as $row) 
+        {
+          $year[$index]=$results->year;
+          $month[$index]=$results->month;
+          $day[$index]=$results->day;
+          $hour[$index]=$results->hour;
+          $min[$index]=$results->minute;
+        }
+        echo '<h3>Next Meeting: '.$month['0'].' '.$day['0'].' '.$year['0']
+              .' at '.$hour['0'].':'.$min['0'].'</h3>';
+      }
+      ?>
+    </div>
     <section id="calendar">
     <h2><?=$group->name()?> Calendar</h2>
-     <script>$('#calendar').datepicker({
+     <script>
+     $('#calendar').datepicker({
     inline: true,
     firstDay: 1,
     showOtherMonths: true,
