@@ -94,6 +94,9 @@
         <h3>Set availability</h3>
         <div id="timegrid"></div>
       </div>
+      
+        <button id="selectall">Select All</button>
+        <button id="unselectall">Unselect All</button>
       <div id="reminderSettings">
         <h3>Reminder setting</h3>
           <?php

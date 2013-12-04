@@ -84,11 +84,26 @@ function removeSeconds(s) {
           var block = $("<td data-year='" + tomorrow.getFullYear() + "' data-month='" + tomorrow.getMonth() + "' data-day='" + tomorrow.getDate() +
            "' data-hour='" + curRowDate.getHours() + classes + removeSeconds(curRowDate.toLocaleTimeString()) +"</td>").appendTo(jqueryObj);
 
-          $(block).bind('click', function() {
+          $(block).bind('mouseover', function() {
               //alert('User clicked on ' + $(this).text());
-              $(this).toggleClass("green-cell");
+              if(isDown)
+              {
+                if(init_add)
+                  $(this).addClass("green-cell");
+                else
+                  $(this).removeClass("green-cell");
+              }
             }
           );
+          $(block).bind('mousedown', function() {
+              $(this).toggleClass("green-cell");
+              if( $(this).hasClass("green-cell"))
+                init_add = true;
+              else
+                init_add = false;
+            }
+          );
+
         }
         curRowDate.setHours(curRowDate.getHours()+1);
     }
@@ -97,6 +112,7 @@ function removeSeconds(s) {
 
 })(jQuery);
 
+var init_add = false;
 var submitted = false;
 
 //POST results to whenisgood.php
@@ -159,7 +175,35 @@ function onSubmit() {
 
 }
 
+function selectAll() {
+  var selected = document.getElementsByClassName("cell");
+  for(var i=0;i<selected.length;i++) {
+    $(selected[i]).addClass("green-cell");
+  }
+  return false;
+}
+
+function unselectAll() {
+  var selected = document.getElementsByClassName("cell");
+  for(var i=0;i<selected.length;i++) {
+    $(selected[i]).removeClass("green-cell");
+  }
+  return false;
+}
+
+var isDown = false;   // Tracks status of mouse button
+
 $(document).ready(function () {
-      $("#timegrid").load_table();
-      $("#submit").bind('click', onSubmit);
+  $("#timegrid").load_table();
+  $("#submit").bind('click', onSubmit);
+  $("#selectall").bind('click', selectAll);
+  $("#unselectall").bind('click', unselectAll);
+
+  $(document).mousedown(function() {
+    isDown = true;      // When mouse goes down, set isDown to true
+  })
+  .mouseup(function() {
+    isDown = false;    // When mouse goes up, set isDown to false
+  });
+
 });

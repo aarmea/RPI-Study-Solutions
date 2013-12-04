@@ -13,6 +13,7 @@ $client = new User(phpCAS::getUser());
     <link rel="stylesheet" type="text/css" href="resources/style.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+    <script src="js/profile.js"></script>
   </head>
   <body>
     <?php include "resources/topbar.php"; ?>
@@ -68,21 +69,15 @@ $client = new User(phpCAS::getUser());
       <h3>Notes to self / Reminders</h3>
       <p>Warning: Saving new notes will replace your old notes.</p>
       <form method="post" class="notes">
-      <textarea id="notes" name="notes" rows="10" cols="100" placeholder="My notes..."></textarea>
-      <input type="submit" name="save" value="Save" action="userprofile.php"/>
+        <textarea id="notes" name="notes" rows="10" cols="100" placeholder="My notes..."></textarea>
+        <input id="submitNotes" type="submit" name="save" value="Save"/>
       </form>
-      <?php if ($_POST['save'])
-      {
-        $query=$db->prepare("UPDATE `users` SET `notes`=:text WHERE `rcsid`= :username");
-        $query->execute(array(':username'=>$client->username(),
-                              ':text'=>$_POST['notes']));
-      }?>
-      <?php 
-      $res = $db->prepare("SELECT `notes` FROM `users` WHERE `rcsid` = :username");
-      $res->execute(array(':username'=>$client->username()));
-      $results=$res->fetch();
+      <?php
+        $res = $db->prepare("SELECT `notes` FROM `users` WHERE `rcsid` = :username");
+        $res->execute(array(':username'=>$client->username()));
+        $results=$res->fetch();
       ?>
-      <div id="savedNotes"><p>Saved Notes:<br><?php echo $results->notes; ?></p></div>
+      <div id="savedNotes"><p>Saved Notes:<br><span id="theNotes"><?php echo $results->notes ?></span></p></div>
     </div>
   </div>
   <?php include "resources/footer.php"; ?>
