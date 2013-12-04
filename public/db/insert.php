@@ -84,6 +84,13 @@
       $newrcd = "INSERT INTO `rpi_study_solutions`.`posts` (`p_id`, `t_id`, `user_id`, `time`, `postBody`, `postNumInThread`) VALUES (NULL, '1', 'kumbaa3', CURRENT_TIMESTAMP, 'Im talking to myself', '2');";
       $conn->exec($newrcd);
       printf("Posts added <br>");
+
+      $sql = "INSERT INTO `threads` (`t_id`, `group_id`, `threadName`) VALUES
+  (1, 1, 'The First Thread'),
+  (2, 1, 'Hello');";
+  $dbh->exec($sql);
+
+  echo "Successfully added threads to table.\n";
         
   }
   catch(PDOException $e) {
