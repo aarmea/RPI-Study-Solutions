@@ -13,10 +13,10 @@ $client = new User(phpCAS::getUser());
     if (isset($_POST['t_id'])) {
 
       try {
-          $results = $db->query('SELECT threadName, groupName FROM threads INNER JOIN groups on threads.group_id = groups.groupid WHERE t_id=1');
+          $results = $db->query('SELECT threadName, groupName FROM threads INNER JOIN groups on threads.group_id = groups.groupid WHERE t_id=' . $_POST['t_id']);
           foreach ($results as $row) {
             ?>
-            <h2><?php echo $row['groupName']; ?> -- <?php echo $row['threadName']; ?></h2>
+            <h2><?php echo $row->groupName; ?> -- <?php echo $row->threadName; ?></h2>
             <?php
           }
 
@@ -29,20 +29,24 @@ $client = new User(phpCAS::getUser());
         // require 'config.php';
 
         try {
-          $results = $db->query('SELECT * FROM posts INNER JOIN users on posts.user_id = users.rcsid WHERE t_id=1');
+          $results = $db->query('SELECT * FROM posts INNER JOIN users on posts.user_id = users.rcsid WHERE t_id=' . $_POST['t_id']);
           foreach ($results as $row) {
          // echo '<pre>';
          // print_r($row);
          // echo '</pre>';
             ?>
-            <div id="post-<?php echo $row['p_id']; ?>" class="post">
+            <div id="post-<?php echo $row->p_id; ?>" class="post">
               <div class="metaPost">
-                <p id="postNum">#<?php echo $row['postNumInThread']; ?></p>
-                <p id="posterName"><?php echo $row['rcsid']; ?></p>
-                <p id="timeStamp"><?php echo $row['time']; ?></p>
+                <p id="postNum">#<?php echo $row->postNumInThread; ?></p>
+                <p id="posterName"><?php echo $row->rcsid; ?></p>
+                <p id="timeStamp"><?php echo $row->time; ?></p>
               </div>
-              <p class="postBody"><?php echo $row['postBody']; ?></p>
-              <button class="quoteButton">Quote</button>
+              <p class="postBody"><?php echo $row->postBody; ?></p>
+              <form name="forumPostForm" action="postToThread.php" method="POST">
+                <input type="hidden" name="quote" value="<?php echo '<blockquote>' . $row->postBody . '</blockquote>' ?>">
+                <input type="submit" name="isQuote" value="Quote" class="quoteButton">
+              </form>
+              <!-- <button class="quoteButton">Quote</button> -->
             </div>
             <?php
 
@@ -55,7 +59,10 @@ $client = new User(phpCAS::getUser());
         ?>
 
         <!-- add in posting to thread -->
-        <button>Reply to this Thread</button>
+        <form name="forumPostForm" action="postToThread.php" method="POST">
+          <input type="hidden" name="threadid" value="<?php echo $_POST['t_id'] ?>">
+          <input type="submit" name="isReply" value="Reply to this Thread">
+        </form>
         <a  href="createThread.php"><button>Start new Thread</button></a>
       </div>
       <?php
@@ -76,7 +83,7 @@ $client = new User(phpCAS::getUser());
             $results = $db->query('SELECT * FROM threads');
             foreach ($results as $row) {
              ?>
-             <option value="<?php echo $row['t_id']; ?>"><?php echo $row['threadName']; ?></option>
+             <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
              <?php
 
            }

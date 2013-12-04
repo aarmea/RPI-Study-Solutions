@@ -24,7 +24,7 @@ $client = new User(phpCAS::getUser());
       }
     }
     ?>
-    <h2>Posting to thread <span id="threadName"></span></h2>
+    <h2>Posting to thread <?php echo "that one thread"; ?></h2>
     <form name="forumPostForm" action="#" method="POST">
       <label>Thread Name:</label>
       <select name="thread_id">
@@ -38,7 +38,11 @@ $client = new User(phpCAS::getUser());
         ?>
       </select>
       <h3>Post body:</h3>
-      <textarea cols="40" rows="5" name="myname"> Now we are inside the area - which is nice. </textarea>      
+      <textarea cols="40" rows="5" name="myname"><?php
+        if (isset($_POST['isQuote'])) {
+          echo $_POST['quote'];
+        }
+       ?></textarea>      
       <input type="submit" value="Submit">
     </form>
   </div>
