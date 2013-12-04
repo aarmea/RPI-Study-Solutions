@@ -27,7 +27,8 @@ $client = new User(phpCAS::getUser());
     <h2>Posting to thread <?php echo "that one thread"; ?></h2>
     <form name="forumPostForm" action="#" method="POST">
       <label>Thread Name:</label>
-      <select name="thread_id">
+      <input type="hidden" name="">
+      <!-- <select name="thread_id">
         <?php
           $threads = listThreads();
           foreach ($threads as $key => $value) {
@@ -36,7 +37,7 @@ $client = new User(phpCAS::getUser());
             <?php
           }
         ?>
-      </select>
+      </select> -->
       <h3>Post body:</h3>
       <textarea cols="40" rows="5" name="myname"><?php
         if (isset($_POST['isQuote'])) {

@@ -77,14 +77,14 @@ try {
     ON UPDATE CASCADE ON DELETE CASCADE
     ) ENGINE=InnoDB";
   $dbh->exec($sql);
-  echo "Successfully created the group membership table.\n";
+  echo "Successfully created the group meetings table.\n";
 
   $sql = "CREATE TABLE IF NOT EXISTS `threads` (
   `t_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `group_id` int(10) unsigned NOT NULL,
   `threadName` varchar(255) NOT NULL,
   PRIMARY KEY (`t_id`),
-  FOREIGN KEY (`groupid`) REFERENCES `groups`(`groupid`)
+  FOREIGN KEY (`group_id`) REFERENCES `groups`(`groupid`)
   ON UPDATE CASCADE ON DELETE CASCADE
   ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;";
   $dbh->exec($sql);
