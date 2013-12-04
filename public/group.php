@@ -29,7 +29,7 @@ phpCAS::forceAuthentication();
       $res->execute(array(':groupid'=>$group->id()));
       $results=$res->fetch();
       $index='0';
-      if(sizeof($results)==0) echo "<h3>No meetings are scheduled</h3>";
+      if(sizeof($results->day)==0) echo "<h3>No meetings are scheduled</h3>";
       else
       {
         foreach ($results as $row) 

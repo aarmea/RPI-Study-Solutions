@@ -46,7 +46,7 @@ $client = new User(phpCAS::getUser());
       $res->execute(array(':username'=>$client->username()));
       $results=$res->fetch();
       $index='0';
-      if(sizeof($results)==0) echo "<h3>No meetings are scheduled</h3>";
+      if(sizeof($results->day)==0) echo "<h3>No meetings are scheduled</h3>";
       else
       {
         foreach ($results as $row) 
