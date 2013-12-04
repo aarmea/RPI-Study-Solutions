@@ -8,7 +8,6 @@ $client = new User(phpCAS::getUser());
 ?>
 <?php include "resources/head.php"; ?>
 <body>
-  <?php include "resources/topbar.php"; ?>
   <div id="content">
     <?php
     if (isset($_POST['t_id'])) {

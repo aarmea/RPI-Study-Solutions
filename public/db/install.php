@@ -65,6 +65,16 @@ try {
   $dbh->exec($sql);
   echo "Successfully created the group membership table.\n";
 
+    $sql = "CREATE TABLE IF NOT EXISTS `group_meetings` (
+    `groupid` INT UNSIGNED NOT NULL,
+    `date` INT(6) NOT NULL,
+    `is_owner` BOOL DEFAULT FALSE,
+    FOREIGN KEY (`groupid`) REFERENCES `groups`(`groupid`)
+    ON UPDATE CASCADE ON DELETE CASCADE
+    ) ENGINE=InnoDB";
+  $dbh->exec($sql);
+  echo "Successfully created the group membership table.\n";
+
   /*
   $sql = "CREATE TABLE IF NOT EXISTS `posts` (
     `p_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
