@@ -44,6 +44,7 @@ $client = new User(phpCAS::getUser());
               </div>
               <p class="postBody"><?php echo $row->postBody; ?></p>
               <form name="forumPostForm" action="postToThread.php" method="POST">
+                <input type="hidden" name="thread_id" value="<?php echo $_POST['t_id'] ?>">
                 <input type="hidden" name="quote" value="<?php echo '<blockquote>' . $row->postBody . '</blockquote>' ?>">
                 <input type="submit" name="isQuote" value="Quote" class="quoteButton">
               </form>

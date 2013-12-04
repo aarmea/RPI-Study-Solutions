@@ -15,19 +15,14 @@ $client = new User(phpCAS::getUser());
   <?php include "resources/topbar.php"; ?>
   <div id="content">
     <?php
-      if (isset($_POST['thread_id'])) {
-      try {
-        addPost($_POST['thread_id'], $client->username(), $_POST['myname']);
-
-      } catch(PDOException $e) {
-        echo 'ERROR: ' . $e->getMessage();
-      }
+    if (isset($_POST['submit'])) {
+      addPost($_POST['thread_id'], $client->username(), $_POST['postBody']);
     }
     ?>
     <h2>Posting to thread <?php echo "that one thread"; ?></h2>
     <form name="forumPostForm" action="#" method="POST">
-      <label>Thread Name:</label>
-      <input type="hidden" name="">
+      <!-- <label>Thread Name:</label> -->
+      <input type="hidden" name="thread_id" value="<?php echo $_POST['thread_id']; ?>">
       <!-- <select name="thread_id">
         <?php
           $threads = listThreads();
@@ -39,12 +34,12 @@ $client = new User(phpCAS::getUser());
         ?>
       </select> -->
       <h3>Post body:</h3>
-      <textarea cols="40" rows="5" name="myname"><?php
+      <textarea cols="40" rows="5" name="postBody"><?php
         if (isset($_POST['isQuote'])) {
           echo $_POST['quote'];
         }
        ?></textarea>      
-      <input type="submit" value="Submit">
+      <input type="submit" name="submit" value="Submit">
     </form>
   </div>
   <?php include "resources/footer.php"; ?>
