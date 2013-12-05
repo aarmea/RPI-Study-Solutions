@@ -36,8 +36,20 @@
     }
   }
 
-  foreach($good_hours as $i)
-    echo "<option value=$i>" . date('h.iA', strtotime("$i:00")) . "</option>";
+  for($i=0;$i<24;$i++)
+  {
+    if(in_array($i,$good_hours))
+    {
+      echo "<option value=$i style='color:lightgreen'>" . date('h.iA', strtotime("$i:00")) . "</option>";
+    }
+    else
+    {
+      echo "<option value=$i style='color:red'>" . date('h.iA', strtotime("$i:00")) . "</option>";
+    }
+  }
+
+  //foreach($good_hours as $i)
+  //  echo "<option value=$i>" . date('h.iA', strtotime("$i:00")) . "</option>";
 
   echo "Pass";
 ?>
