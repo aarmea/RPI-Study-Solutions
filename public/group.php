@@ -34,6 +34,7 @@ include "resources/head.php";?>
       }
       ?>
     </div>
+    <p><a href="scheduleMtg.php">Schedule a meeting for this group</p>
     <h2><?=$group->name()?> Calendar</h2>
     <div id="calendar"></div>
      <script>

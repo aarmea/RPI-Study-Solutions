@@ -7,7 +7,6 @@ phpCAS::forceAuthentication();
 $client = new User(phpCAS::getUser());
 ?>
 <?php include "resources/head.php";?>
-  </head>
   <body>
     <?php include "resources/topbar.php";?>
     <div id="content">
