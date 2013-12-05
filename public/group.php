@@ -68,7 +68,25 @@ require_once "login.php"
     </section>
 
     <section id="threads">
-    <h2>Group Thread</h2>
+      <h2>Group Thread</h2>
+      <form action="groupThread.php" method="post">
+          <select name="t_id">
+            <?php
+            $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
+            foreach ($results as $row) {
+             ?>
+             <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
+             <?php
+
+           }
+           ?>
+         </select>
+        <input type="submit" value="Go to thread">
+       </form>
+       <form action="createThread.php" method="post">
+        <input type="hidden" name="group_id" value="<?php echo $_GET['g']; ?>">
+        <input type="submit" value="Create new thread">
+       </form>
     </section>
 <? } else { ?>
     This group does not exist.
