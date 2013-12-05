@@ -74,7 +74,7 @@ $client = new User(phpCAS::getUser());
     }else{
 
       ?>
-      <h2>Group selecte</h2>
+      <h2>Group select</h2>
 
       <?php 
 
