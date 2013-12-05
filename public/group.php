@@ -1,9 +1,19 @@
 <?php
 require_once "auth/cas_init.php";
 require_once "classes/group.php";
+require_once "classes/user.php";
 $group = new Group($_GET["g"]);
-phpCAS::forceAuthentication();
-include "resources/head.php";?>
+require_once "login.php"
+?>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RPI Study Solutions</title>
+  <link rel="stylesheet" type="text/css" href="resources/style.css">  
+  <link rel="stylesheet" type="text/css" href="resources/calendar.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+</head>
 <body>
 <?php include "resources/topbar.php"?>
   <div id="content">
