@@ -28,6 +28,7 @@ try {
     `yog` YEAR,
     `major` VARCHAR(64),
     `notes` text(1000),
+    `isadmin` TINYINT NOT NULL DEFAULT 0,
     PRIMARY KEY (`rcsid`)
     ) ENGINE=InnoDB";
   $dbh->exec($sql);
@@ -67,11 +68,11 @@ try {
 
     $sql = "CREATE TABLE IF NOT EXISTS `group_meetings` (
     `groupid` INT UNSIGNED NOT NULL,
+    `name` VARCHAR(255) NOT NULL,
     `year` INT(4) NOT NULL,
     `month` INT(2) NOT NULL,
     `day` INT(2) NOT NULL,
     `hour` INT(2) NOT NULL,
-    `min` INT(2)  NOT NULL,
     `is_owner` BOOL DEFAULT FALSE,
     FOREIGN KEY (`groupid`) REFERENCES `groups`(`groupid`)
     ON UPDATE CASCADE ON DELETE CASCADE

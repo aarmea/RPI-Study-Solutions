@@ -13,11 +13,12 @@ class User {
   private $yog = -1;
   private $major = "";
   private $groups = array(); // Array from group name to group id
+  private $isadmin = false;
 
   public function __construct($rcsid) {
     global $db;
     $query = $db->prepare(
-      "SELECT `rcsid`, `shortname`, `fullname`, `email`, `yog`, `major`
+      "SELECT `rcsid`, `shortname`, `fullname`, `email`, `yog`, `major`, `isadmin` 
       FROM `users` WHERE `rcsid` = :rcsid"
     );
     $query->execute(array(":rcsid" => $rcsid));
@@ -30,6 +31,7 @@ class User {
     $this->altEmail = $user->email;
     $this->yog = $user->yog;
     $this->major = $user->major;
+    $this->isadmin = $user->isadmin;
 
     $query = $db->prepare(
       "SELECT `groupid`, `groupname`
@@ -72,6 +74,10 @@ class User {
 
   public function groups() {
     return $this->groups;
+  }
+
+  public function isadmin() {
+    return $this->isadmin;
   }
 
   // Returns the email associated with this user's CAS credentials.

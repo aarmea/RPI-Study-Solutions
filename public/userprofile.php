@@ -3,15 +3,32 @@ require_once "db/init.php";
 require 'db/config.php';
 require_once "auth/cas_init.php";
 require_once "classes/user.php";
-phpCAS::forceAuthentication();
-$client = new User(phpCAS::getUser());
+require_once "login.php"
 ?>
+
+<style>
+p, a
+{
+  font-size:15px;
+}
+a
+{
+  font-weight:bold;
+}
+</style>
+
 <?php include "resources/head.php";?>
-  </head>
   <body>
+    <script src="js/profile.js"></script>
     <?php include "resources/topbar.php";?>
     <div id="content2">
-    <h2>Welcome, <?=$client->shortname()?></h2>
+    <h2>Welcome, 
+      <?php 
+        echo $client->shortname();
+        if($client->isadmin() == true)
+          echo "<br>You are logged in as admin";
+      ?>
+    </h2>
      <img src="<?=$client->imageURL()?>">
     <p><?=$client->fullname()?>
       <span id="username"><?=$client->username()?></span></p>
@@ -34,7 +51,7 @@ $client = new User(phpCAS::getUser());
       $res = $db->prepare("SELECT * FROM group_meetings
         INNER JOIN group_members ON group_members.rcsid = :username
         ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
-                  group_meetings.hour,group_meetings.min " );
+                  group_meetings.hour" );
       $res->execute(array(':username'=>$client->username()));
       $results=$res->fetch();
       $index='0';
@@ -47,10 +64,9 @@ $client = new User(phpCAS::getUser());
           $month[$index]=$results->month;
           $day[$index]=$results->day;
           $hour[$index]=$results->hour;
-          $min[$index]=$results->minute;
         }
         echo '<h3>Next Meeting: '.$month['0'].' '.$day['0'].' '.$year['0']
-              .' at '.$hour['0'].':'.$min['0'].'</h3>';
+              .' at '.$hour['0'].':'.'</h3>';
       }
       ?>
     </div>
@@ -58,18 +74,18 @@ $client = new User(phpCAS::getUser());
     <div id="hoverDay">Hover over a day to see appointments.</div>
     <div id="calendar"></div>
     <script src="js/calendar.js"></script>
-    <div id="notes">
+     <div id="notes">
       <h3>Notes to self / Reminders</h3>
       <p>Warning: Saving new notes will replace your old notes.</p>
       <form method="post" class="notes">
         <textarea id="notes" name="notes" rows="10" cols="100" placeholder="My notes..."></textarea>
-        <input id="submitNotes" type="submit" name="save" value="Save"/>
+      <input id="submitNotes" type="submit" name="save" value="Save"/>
       </form>
       <?php
-        $res = $db->prepare("SELECT `notes` FROM `users` WHERE `rcsid` = :username");
-        $res->execute(array(':username'=>$client->username()));
-        $results=$res->fetch();
-      ?>
+              $res = $db->prepare("SELECT `notes` FROM `users` WHERE `rcsid` = :username");
+              $res->execute(array(':username'=>$client->username()));
+              $results=$res->fetch();
+            ?>
       <div id="savedNotes"><p>Saved Notes:<br><span id="theNotes"><?php echo $results->notes ?></span></p></div>
     </div>
   </div>

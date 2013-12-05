@@ -92,33 +92,28 @@
       <h2>Settings</h2>
       <div id="calendarSettings">
         <h3>Set availability</h3>
+
+        <div style="width:80%">
+        <div id = "cur_week"></div>
+      </div>
+        <button id="prevweek">Previous Week</button>
+        <button id="nextweek">Next Week</button>
+
         <div id="timegrid"></div>
+        <div id="timegrid2"></div>
+        <div id="timegrid3"></div>
+        <div id="timegrid4"></div>
+        <div id="timegrid5"></div>
+        <div id="timegrid6"></div>
+        <div id="timegrid7"></div>
+        <div id="timegrid8"></div>
+        <div id="timegrid9"></div>
+        <div id="timegrid10"></div>
       </div>
       
         <button id="selectall">Select All</button>
         <button id="unselectall">Unselect All</button>
-      <div id="reminderSettings">
-        <h3>Reminder setting</h3>
-          <?php
-
-            $arr = getNotifications();
-          
-            if($arr[0] == 0)
-              echo '<input type="checkbox" name="rem_set_1" value="op1">op1<br>';
-            else
-              echo '<input type="checkbox" name="rem_set_1" value="op1" checked>op1<br>';
-
-            if($arr[1] == 0)
-              echo '<input type="checkbox" name="rem_set_2" value="op2">op2<br>';
-            else
-              echo '<input type="checkbox" name="rem_set_2" value="op2" checked>op2<br>';
-
-            if($arr[2] == 0)
-              echo '<input type="checkbox" name="rem_set_3" value="op3">op3<br>';
-            else
-              echo '<input type="checkbox" name="rem_set_3" value="op3" checked>op3<br>';
-
-          ?>
+      
         <h3>Change alt email for reminders</h3>
           <input type="input" name="email" value= <?php echo '"' . getEmail() . '"'; ?> />
         <input id="posthidden" type="hidden" name="dates" />
@@ -133,4 +128,6 @@
   </div>
   <?php include "resources/footer.php"; ?>
 </body>
+
 </html>
+

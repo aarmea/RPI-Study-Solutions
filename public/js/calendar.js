@@ -6,10 +6,13 @@ $('#calendar').datepicker({
 });
 $(function() {
   $("#datepicker").datepicker();
-  $(".ui-state-default").live("mouseover", function() {
+  $(".ui-state-default").on("mouseover", function() {
     $("#hoverDay").text($(this).text());
    });
-  $(".ui-state-default").live("mouseout", function() {
+  $(".ui-state-default").on("mouseout", function() {
     $("#hoverDay").text('Hover over a day to see appointments.');
+   });
+  $(".ui-state-default").on("click", function() {
+    $("#scheduleDay").text('CLICK.');
    });
 });
