@@ -71,16 +71,21 @@ a
       ?>
     </div>
     <h3>Calendar</h3>
-    <div id="hoverDay">Hover over a day to see appointments.</div>
     <div id="calendar"></div>
+    <div id="hoverDay" style="font-size:15px">Hover over a day to see appointments.</div>
     <script src="js/calendar.js"></script>
      <div id="notes">
       <h3>Notes to self / Reminders</h3>
       <p>Warning: Saving new notes will replace your old notes.</p>
-      <form method="post" class="notes">
+      
+      <form id="mainForm" method="post" class="notes">
         <textarea id="notes" name="notes" rows="10" cols="100" placeholder="My notes..."></textarea>
-      <input id="submitNotes" type="submit" name="save" value="Save"/>
+        <input id="submitNotes" type="submit" name="save" value="Save"/>
+        <input id="hyear" type="hidden" name="hyear" />
+        <input id="hmonth" type="hidden" name="hmonth" />
+        <input id="hday" type="hidden" name="hday" />
       </form>
+      
       <?php
               $res = $db->prepare("SELECT `notes` FROM `users` WHERE `rcsid` = :username");
               $res->execute(array(':username'=>$client->username()));
