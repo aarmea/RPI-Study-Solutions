@@ -10,7 +10,7 @@ class Thread {
   public function __construct($t_id) {
     global $db;
     $query = $db->prepare(
-      "SELECT `t_id`, `threadname`, `owner` FROM `groups` WHERE `t_id` = :t_id"
+      "SELECT `t_id`, `threadname`, `owner` FROM `threads` WHERE `t_id` = :t_id"
     );
     $query->execute(array(":t_id" => $t_id));
     $thread = $query->fetch();

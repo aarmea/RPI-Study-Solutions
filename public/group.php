@@ -70,7 +70,6 @@ phpCAS::forceAuthentication();
 
     <section id="threads">
     <h2>Group Thread</h2>
-    <!-- <?php include "groupThread.php" ?> -->
     </section>
 <? } else { ?>
     This group does not exist.

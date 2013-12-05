@@ -62,14 +62,13 @@ $client = new User(phpCAS::getUser());
 
         <!-- add in posting to thread -->
         <form name="forumPostForm" action="postToThread.php" method="POST">
-          <input type="hidden" name="threadid" value="<?php echo $_POST['t_id'] ?>">
+          <input type="hidden" name="thread_id" value="<?php echo $_POST['t_id'] ?>">
           <input type="submit" name="isReply" value="Reply to this Thread">
         </form>
         <a  href="createThread.php"><button>Start new Thread</button></a>
       </div>
       <?php
     }else{
-
 
       ?>
       <h2>no thread selected</h2>

@@ -79,8 +79,6 @@ function addPost($threadid, $poster, $postBody) {
   $temp = $query->fetch();
   $temp = get_object_vars($temp);
   $postNumInThread = $temp['MAX(`postNumInThread`)'] + 1;
-  echo $postNumInThread;
-  // echo $temp->postNumInThread;
   $query = $db->prepare(
     "INSERT INTO `posts` (`t_id`, `user_id`, `postBody`, `postNumInThread`) VALUES (:threadid, :userid, :postBody, :postNumInThread)"
   );
