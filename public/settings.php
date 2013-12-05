@@ -28,9 +28,6 @@
     $result = $dbh->fetchAll();
 
     return $result;
-
-    //Return an array of arrays of [year month day hour]
-    //return array( array(2013,11,28,8), array(2013,11,28,9) );
   }
 
   //Get notifications from database here

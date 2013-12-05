@@ -6,7 +6,7 @@
   require_once "classes/user.php";
 
   global $db;
-  require_once "login.php"
+  require_once "login.php";
   $rcsid = $client->username();
 
   $error = false;

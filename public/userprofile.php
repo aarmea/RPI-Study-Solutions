@@ -12,7 +12,7 @@ require_once "login.php"
     <h2>Welcome, 
       <?php 
         echo $client->shortname();
-        if(isset($_SESSION['admin']) && $_SESSION['admin'] == true)
+        if($client->isadmin() == true)
           echo "<br>You are logged in as admin";
       ?>
     </h2>
