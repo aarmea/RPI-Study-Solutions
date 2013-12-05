@@ -1,9 +1,8 @@
-<?
+<?php
 require_once "auth/cas_init.php";
 require_once "classes/group.php";
 require_once "classes/user.php";
 $group = new Group($_GET["g"]);
-
 phpCAS::forceAuthentication();
 $client = new User(phpCAS::getUser());
 ?>
@@ -17,7 +16,7 @@ $client = new User(phpCAS::getUser());
   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 </head>
 <body>
-  <?php include "resources/topbar.php"; ?>
+<?php include "resources/topbar.php"?>
   <div id="content">
 <? if ($group->exists()) { ?>
     <h1><?=$group->name()?></h1>
@@ -46,8 +45,9 @@ $client = new User(phpCAS::getUser());
       }
       ?>
     </div>
-    <section id="calendar">
+    <p><a href="scheduleMtg.php">Schedule a meeting for this group</p>
     <h2><?=$group->name()?> Calendar</h2>
+    <div id="calendar"></div>
      <script>
      $('#calendar').datepicker({
     inline: true,
@@ -56,7 +56,6 @@ $client = new User(phpCAS::getUser());
     dayNamesMin: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     });
     </script>
-    <div id="calendar"></div>
     </section>
     <section id="members">
       <h2>Members</h2>
