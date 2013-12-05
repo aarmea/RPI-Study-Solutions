@@ -54,6 +54,46 @@ class Group {
   public function owners() {
     return $this->owners;
   }
+
+  function addMember($member)
+  {
+    global $db;
+
+    $query = $db->prepare("SELECT COUNT(*) FROM group_members WHERE groupid=:groupid AND rcsid=:member");
+    $query->execute(array(
+      ":groupid" => $this->groupid,
+      ":member" => $member
+      ));
+
+    $result = $query->fetchColumn();
+
+
+    if($result == 0)
+    {
+      $query = $db->prepare(
+        "INSERT INTO `group_members` (`groupid`, `rcsid`, `is_owner`) VALUES (:groupid, :rcsid, :is_owner)");
+
+      try
+      {
+        $query->execute(array(
+          ":groupid" => $this->groupid,
+          ":rcsid" => $member,
+          ":is_owner" => false
+        ));
+      }
+      catch(Exception $e)
+      {
+        return "Could not add the user: User ID does not exist";
+      }
+      return "Successfully added user $member";
+    }
+    else
+    {
+      return "Could not add the user: Already in group";
+    }
+
+  }
+
 }
 
 function listGroups() {
@@ -91,4 +131,5 @@ function addGroup($groupname, $members = array()) {
   }
   return new Group($groupid);
 }
+
 ?>

@@ -1,14 +1,16 @@
 <?php
 require_once "auth/cas_init.php";
 require_once "classes/group.php";
+require_once "classes/user.php";
 
 phpCAS::forceAuthentication();
+$client = new User(phpCAS::getUser());
 
 if (isset($_POST["create_group"]) && isset($_POST["name"])) {
   $members = array(phpCAS::getUser());
   if (isset($_POST["members"])) {
     $members = array_merge(
-      $members, array_map("trim", explode(",", $_POST["members"])));
+      $members, array_map("trim", array_filter(explode(",", $_POST["members"]))));
   }
   $newGroup = addGroup($_POST["name"], $members);
 
@@ -26,7 +28,7 @@ include "resources/head.php";
       <label for="groupname_input">Group name:</label>
       <input id="groupname_input" type="text" name="name" required>
       <label for="members_input">Additional group members (by RCS ID):</label>
-      <input id="members_input" type="text" name="members">
+      <input id="members_input" type="text" name="members" value="<?php echo $client->username() . ' '; ?>">
       <input type="submit" name="create_group" value="Create">
     </form>
   </div>
