@@ -6,9 +6,7 @@ require_once "classes/user.php";
 require_once "classes/group.php";
 require_once "classes/thread.php";
 require_once "classes/post.php";
-
-phpCAS::forceAuthentication();
-$client = new User(phpCAS::getUser());
+require_once "login.php"
 ?>
 <?php 
 if (!isset($_POST['t_id'])) {

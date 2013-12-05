@@ -3,8 +3,7 @@ require_once "auth/cas_init.php";
 require_once "classes/group.php";
 require_once "classes/user.php";
 $group = new Group($_GET["g"]);
-phpCAS::forceAuthentication();
-$client = new User(phpCAS::getUser());
+require_once "login.php"
 ?>
 <!DOCTYPE html>
 <html>
