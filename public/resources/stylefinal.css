@@ -64,15 +64,17 @@ body *{
 }
 
 #content2{
-  width: 80%;
   overflow: auto;
-  margin: auto;
-  margin-top: 30px;
-  border-style:solid;
-  border-width:3px;
-  border-color: green;
-  border-bottom: none;
   padding-bottom: 3em; 
+  width: 60%; 
+  margin: 0 auto;
+  padding-bottom: 5em;
+}
+#content2 a {
+ color:black;
+}
+#content2 a:hover {
+   color: white;
 }
 
 }
@@ -208,3 +210,7 @@ a:link {color:white;}      /* unvisited link */
 a:visited {color:white;}  /* visited link */
 a:hover {color:grey;}  /* mouse over link */
 a:active {color:white;}
+
+.profile {
+  border-radius:10px;
+}

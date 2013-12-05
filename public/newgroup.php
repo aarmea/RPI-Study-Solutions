@@ -20,6 +20,7 @@ if (isset($_POST["create_group"]) && isset($_POST["name"])) {
 
 include "resources/head.php";
 ?>
+<div id="container">
 <body>
   <?php include "resources/topbar.php"; ?>
   <div id="content">
@@ -32,6 +33,7 @@ include "resources/head.php";
       <input type="submit" name="create_group" value="Create">
     </form>
   </div>
+</div>
   <?php include "resources/footer.php"; ?>
 </body>
 </html>

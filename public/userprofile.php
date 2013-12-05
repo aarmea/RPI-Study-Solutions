@@ -30,7 +30,7 @@ a
           echo "<br>You are logged in as admin";
       ?>
     </h2>
-     <img src="<?=$client->imageURL()?>">
+     <img class="profile" src="<?=$client->imageURL()?>">
     <p><?=$client->fullname()?>
       <span id="username"><?=$client->username()?></span></p>
     <p><?=$client->major()?>, Class of <?=$client->yog()?></p>
