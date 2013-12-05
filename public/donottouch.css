@@ -85,7 +85,10 @@ background-color:  rgb(249, 249, 249)
 	background: url(images/city2.jpg) repeat scroll 0%;
 	border-right-style: none;
 }
-
+.jimgMenu ul li#logout a {
+	background: url(images/logout.jpg) repeat scroll 0%;
+	border-right-style: none;
+}
 
 .clear {
 	clear: both;
