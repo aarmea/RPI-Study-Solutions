@@ -6,6 +6,7 @@ require_once "classes/post.php";
 
 require_once "login.php"
 ?>
+  <div id="container">
 <?php include "resources/head.php"; ?>
 <body>
   <?php include "resources/topbar.php"; ?>
@@ -100,6 +101,7 @@ require_once "login.php"
   } 
   ?>
 
+</div>
 </div>
 <?php include "resources/footer.php"; ?>
 </body>

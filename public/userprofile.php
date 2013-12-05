@@ -21,6 +21,7 @@ a
   <body>
     <script src="js/profile.js"></script>
     <?php include "resources/topbar.php";?>
+    <div id="container">
     <div id="content2">
     <h2>Welcome, 
       <?php 
@@ -89,6 +90,7 @@ a
       <div id="savedNotes"><p>Saved Notes:<br><span id="theNotes"><?php echo $results->notes ?></span></p></div>
     </div>
   </div>
+</div>
  <p><?php include "resources/footer2.php"; ?></p>
 </body>
 </html>

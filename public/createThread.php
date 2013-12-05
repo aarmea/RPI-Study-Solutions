@@ -7,6 +7,7 @@ require_once "classes/group.php";
 
 require_once "login.php"
 ?>
+<div id="container">
 <?php include "resources/head.php"; ?>
 <body>
   <?php include "resources/topbar.php"; ?>
@@ -34,7 +35,7 @@ require_once "login.php"
     ?>
     <h2>Create Thread</h2>
     <form action="#" method="post">
-      <label>Group_id:</label>
+      <label style="background-color: transparent;">Group_id:</label>
       <select name="group_id">
         <?php
           $groups = listGroups();
@@ -52,6 +53,7 @@ require_once "login.php"
       <input type="submit" value="Submit">
     </form>
   </div>
-  <?php include "resources/footer.php"; ?>
+</div>
+    <?php include "resources/footer.php"; ?>
 </body>
 </html>

@@ -51,6 +51,8 @@
 <?php include "resources/head.php"; ?>
 <body>
   <?php include "resources/topbar.php";?>
+  <div id="container">
+    <div id="content">
 
   <script type='text/javascript'>
     var year = <?php echo $year ?>;
@@ -126,6 +128,7 @@
 
     </div>
   </div>
+</div>
   <?php include "resources/footer.php"; ?>
 </body>
 
