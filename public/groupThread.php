@@ -2,6 +2,7 @@
 require_once "db/init.php";
 require_once "auth/cas_init.php";
 require_once "classes/user.php";
+require_once "classes/post.php";
 
 phpCAS::forceAuthentication();
 $client = new User(phpCAS::getUser());
@@ -12,6 +13,10 @@ $client = new User(phpCAS::getUser());
   <div id="content">
     <?php
     if (isset($_POST['t_id'])) {
+      print_r($_POST);
+      if (isset($_POST['submit'])) {
+        addPost($_POST['t_id'], $client->username(), $_POST['postBody']);
+      }
 
       try {
           $results = $db->query('SELECT threadName, groupName FROM threads INNER JOIN groups on threads.group_id = groups.groupid WHERE t_id=' . $_POST['t_id']);
@@ -44,7 +49,7 @@ $client = new User(phpCAS::getUser());
               </div>
               <p class="postBody"><?php echo $row->postBody; ?></p>
               <form name="forumPostForm" action="postToThread.php" method="POST">
-                <input type="hidden" name="thread_id" value="<?php echo $_POST['t_id'] ?>">
+                <input type="hidden" name="t_id" value="<?php echo $_POST['t_id'] ?>">
                 <input type="hidden" name="quote" value="<?php echo '<blockquote>' . $row->postBody . '</blockquote>' ?>">
                 <input type="submit" name="isQuote" value="Quote" class="quoteButton">
               </form>
@@ -62,7 +67,7 @@ $client = new User(phpCAS::getUser());
 
         <!-- add in posting to thread -->
         <form name="forumPostForm" action="postToThread.php" method="POST">
-          <input type="hidden" name="thread_id" value="<?php echo $_POST['t_id'] ?>">
+          <input type="hidden" name="t_id" value="<?php echo $_POST['t_id'] ?>">
           <input type="submit" name="isReply" value="Reply to this Thread">
         </form>
         <a  href="createThread.php"><button>Start new Thread</button></a>

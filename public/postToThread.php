@@ -14,16 +14,11 @@ $client = new User(phpCAS::getUser());
 <body>
   <?php include "resources/topbar.php"; ?>
   <div id="content">
-    <?php
-    print_r($_POST);
-    if (isset($_POST['submit'])) {
-      addPost($_POST['thread_id'], $client->username(), $_POST['postBody']);
-    }
-    ?>
-    <?php $the_thread = new Thread($_POST['thread_id']) ?>
+    <?php print_r($_POST);
+    $the_thread = new Thread($_POST['t_id']) ?>
     <h2>Posting to <?php echo $the_thread->name(); ?></h2>
-    <form name="forumPostForm" action="#" method="POST">
-      <input type="hidden" name="thread_id" value="<?php echo $_POST['thread_id']; ?>">
+    <form name="forumPostForm" action="groupThread.php" method="POST">
+      <input type="hidden" name="t_id" value="<?php echo $_POST['t_id']; ?>">
       <h3>Post body:</h3>
       <textarea cols="40" rows="5" name="postBody"><?php
         if (isset($_POST['isQuote'])) {
