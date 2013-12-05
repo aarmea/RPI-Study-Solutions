@@ -10,7 +10,7 @@ $client = new User(phpCAS::getUser());
   </head>
   <body>
     <?php include "resources/topbar.php";?>
-    <div id="content">
+    <div id="content2">
     <h2>Welcome, <?=$client->shortname()?></h2>
      <img src="<?=$client->imageURL()?>">
     <p><?=$client->fullname()?>
@@ -73,6 +73,6 @@ $client = new User(phpCAS::getUser());
       <div id="savedNotes"><p>Saved Notes:<br><span id="theNotes"><?php echo $results->notes ?></span></p></div>
     </div>
   </div>
-  <?php include "resources/footer.php"; ?>
+ <p><?php include "resources/footer2.php"; ?></p>
 </body>
 </html>

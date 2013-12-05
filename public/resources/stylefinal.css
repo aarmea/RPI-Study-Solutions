@@ -35,11 +35,36 @@ body *{
   text-shadow: none;
   margin-bottom: 0px;
 }
+
+#footer2{
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  font-size:13px;
+  color:blue;
+  text-shadow: none;
+  margin-bottom: 0px;
+  border-width:3px;
+  border-color: green;
+  border-top: none;
+}
 #content{
   width: 80%;
   overflow: auto;
   margin: auto;
   margin-top: 30px;
+}
+
+#content2{
+  width: 80%;
+  overflow: auto;
+  margin: auto;
+  margin-top: 30px;
+  border-style:solid;
+  border-width:3px;
+  border-color: green;
+  border-bottom: none;
+  
 }
 #signUpDiv{
   float: left;
