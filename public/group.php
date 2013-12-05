@@ -1,22 +1,38 @@
 <?
 require_once "auth/cas_init.php";
-
 require_once "classes/group.php";
 $group = new Group($_GET["g"]);
-
 phpCAS::forceAuthentication();
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RPI Study Solutions</title>
-  <link rel="stylesheet" type="text/css" href="resources/style.css">  
-  <link rel="stylesheet" type="text/css" href="resources/calendar.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<link href="resources/style.css" rel="stylesheet" type="text/css" />
+<link href="resources/calendar.css" rel="stylesheet" type="text/css" />
+<link href="donottouch.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+<script type="text/javascript" src="js/jquery.kwicks-1.5.1.pack.js"></script>
+<script src="js/profile.js"></script>
+<script type="text/javascript">
+$().ready(function() {
+$('.jimgMenu ul').kwicks({max: 310, duration: 300, easing: 'easeOutQuad'});
+});
+</script>
 </head>
 <body>
-  <?php include "resources/topbar.php"; ?>
+    <div class="jimgMenu">
+      <ul>
+        <li id="logo"><a href="index.php">Home Page</a></li>
+        <li id="people"><a href="createThread.php">Create Group</a></li>
+        <li id="post"><a href="postToThread.php">Post to thread</a></li>
+        <li id="explore"><a href="groupThread.php">View groups</a></li>
+        <li id="profile"><a href="userprofile.php">stuffs</a></li>
+        <li id="setting"><a href="settings.php">stuffs</a></li>
+        <li id="login"><a href="login.php">stuffs</a></li>
+      </ul>
+    </div>
+    <br  style="clear:both"/><br />
   <div id="content">
 <? if ($group->exists()) { ?>
     <h1><?=$group->name()?></h1>

@@ -8,7 +8,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Dynamic Image Menu Example</title>
 <link href="donottouch.css" rel="stylesheet" type="text/css" />
-<script type="text/javascript" src="js/jquery.js"></script><script type="text/javascript" src="js/jquery-easing-1.3.pack.js"></script><script type="text/javascript" src="js/jquery-easing-compatibility.1.2.pack.js"></script>
 <script type="text/javascript" src="js/jquery.kwicks-1.5.1.pack.js"></script>
 
 <!--[if IE]>
