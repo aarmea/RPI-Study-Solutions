@@ -4,7 +4,9 @@ require_once "auth/cas_init.php";
 require_once "classes/user.php";
 require_once "classes/post.php";
 
-require_once "login.php"
+require_once "login.php";
+phpCAS::forceAuthentication();
+$client = new User(phpCAS::getUser());
 ?>
 <?php include "resources/head.php"; ?>
 <body>
@@ -71,20 +73,21 @@ require_once "login.php"
     }else{
 
       ?>
-      <h2>no thread selected</h2>
+      <h2>Group selecte</h2>
 
       <?php 
 
       try {
 
         ?>
-        <form action="#" method="post">
-          <select name="t_id">
+        <form action="group.php" method="get">
+          <select name="g">
             <?php
-            $results = $db->query('SELECT * FROM threads');
+            $results = $db->query('SELECT * FROM groups JOIN group_members ON groups.groupid=group_members.groupid WHERE rcsid=\'' . $client->username().'\'');
+            print_r($results);
             foreach ($results as $row) {
              ?>
-             <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
+             <option value="<?php echo $row->groupid; ?>"><?php echo $row->groupname; ?></option>
              <?php
 
            }

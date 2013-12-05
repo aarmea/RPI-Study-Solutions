@@ -10,7 +10,7 @@ require_once "login.php"
 ?>
 <?php 
 if (!isset($_POST['t_id'])) {
-  header( 'Location: ./' ) ;
+  header( 'Location: ./groupThread.php' ) ;
 }
 include "resources/head.php"; ?>
 <body>
