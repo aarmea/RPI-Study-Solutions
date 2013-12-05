@@ -40,6 +40,7 @@ body *{
   overflow: auto;
   margin: auto;
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 #signUpDiv{
   float: left;
@@ -98,8 +99,13 @@ body *{
   margin-top: 10px;
 }
 h2{
-  text-align: center;
     color:black;
+  font-size:30px;
+}
+h3{
+  color:black;
+  font-size:20px;
+  text-decoration:underline;
 }
 .post{
   display: block; 
@@ -136,4 +142,23 @@ h2{
   margin: 0 auto;
   position:relative;
   background-color: rgb(249, 249, 249);
+}
+
+#mytable
+{
+  font-size:15px;
+  width:80%;
+}
+
+#table_header
+{
+  font-size:20px;
+  font-weight:bold;
+}
+
+#cur_week
+{
+  font-size:20px;
+  font-style:italic;
+  text-align:center;
 }

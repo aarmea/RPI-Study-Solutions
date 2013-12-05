@@ -5,20 +5,23 @@ require_once "classes/user.php";
 $group = new Group($_GET["g"]);
 require_once "login.php"
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>RPI Study Solutions</title>
-  <link rel="stylesheet" type="text/css" href="resources/style.css">  
-  <link rel="stylesheet" type="text/css" href="resources/calendar.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-  <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
-</head>
+
+<style>
+p, a
+{
+  font-size:15px;
+}
+a
+{
+  font-weight:bold;
+}
+</style>
+<?php include "resources/head.php"; ?>
 <body>
 <?php include "resources/topbar.php"?>
   <div id="content">
 <? if ($group->exists()) { ?>
-    <h1><?=$group->name()?></h1>
+    <h2>Group: <?=$group->name()?></h2>
     <div id="meetings">
         <?php
       $res = $db->prepare("SELECT * FROM group_meetings
@@ -44,8 +47,8 @@ require_once "login.php"
       }
       ?>
     </div>
-    <p><a href="scheduleMtg.php?g=<?=$group->id()?>">Schedule a meeting for this group</p>
-    <h2><?=$group->name()?> Calendar</h2>
+    <a href="scheduleMtg.php?g=<?=$group->id()?>"><button>Schedule a meeting for this group</button></a>
+    <h3><?=$group->name()?>'s Calendar</h3>
     <div id="calendar"></div>
      <script>
      $('#calendar').datepicker({
@@ -57,18 +60,19 @@ require_once "login.php"
     </script>
     </section>
     <section id="members">
-      <h2>Members</h2>
+      <h3>Members</h3>
       <ul>
 <? foreach ($group->members() as $rcsid => $name) { ?>
         <li><a href="userprofile.php?u=<?=$rcsid?>"><?=$name?></a></li>
 <? } ?>
         <!-- TODO: Add a way to add more users to a group if you are in it. -->
-      <li><a href="newmembers.php">Invite New Members</a></li>
+        
       </ul>
+      <a href="newmembers.php"><button>Invite New Members</button></a>
     </section>
 
     <section id="threads">
-      <h2>Group Thread</h2>
+      <h3>Group Thread</h3>
       <form action="groupThread.php" method="post">
           <select name="t_id">
             <?php

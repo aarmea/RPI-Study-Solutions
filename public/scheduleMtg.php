@@ -9,36 +9,8 @@ require_once "login.php"
 <body>
 <?php include "resources/topbar.php" ?>
 <div id="content">
-<?php 
 
-$haveDate=isset($_POST['submit']);
-if ($haveDate)
-{
-	$month=date('m',strtotime($month));
-	$day=$_POST["day"];
-	$year=$_POST["year"];
-	$day=$_POST["day"];
-
-	//validate date
-	$valiDate=checkdate($month,$day,$year);
-	if(!$valiDate)$msg="wrongwrong";
-	else
-	{
-		$msg="okay";
-		$query=$db->prepare("INSERT INTO `meetings` (`groupid`, `year`,`month`,`day`,`hour`,`min`)
-			VALUES (:groupid, :year,:month,:day,:hour,:min)");
-        $query->execute(array(':groupid'=>$group->id(),
-                              ':year'=>$year,
-                              ':month'=>$month,
-                              ':day'=>$day,
-                              ':hour'=>$_POST['hour'],
-                              ':min'=>$_POST['min']));
-	}
-}
-else $msg="not set???"
-
-?>
-<form id="mainForm">
+<form id="mainForm" method="post" action="scheduleMtg.php?g=<?=$_GET["g"]?>">
 	<div class="formData">
 	<select name='month' id='month'>
 		<?php for($i = 1; $i <= 12; $i++):?>
@@ -53,21 +25,16 @@ else $msg="not set???"
 	</select>
 	<select name='time' id='time'>
 	<?php 
-		//require 'get_good_dates.php';
-		/*
-		for($i = 0; $i < 24; $i++)
-		{
-	    echo "<option value=$i>" . date('h.iA', strtotime("$i:00")) . "</option>";
-	  }
-	  */
-
 	?>
 	</select>
 	<input type="text" name="eventName" placeholder="Event Name"/>
-    <input type="submit" value="submit" id="submit" name="submit"/>
+    <input id="submit" type="submit" value="submit" id="submit" name="submit"/>
 </div>
 </form>
-<h1><?php echo $msg ?></h1>
+<!--
+<h2><?php if(isset($_POST['submit'])) {echo $msg; } ?></h2>
+-->
+<h2 id="submitMessage"></h2>
 <div id="calendar"></div>
 
 <script src="js/calendar.js"></script>
@@ -84,22 +51,37 @@ var gid = <?php
 							echo 0; 
 						} 
 					?>;
-function fill_dropdown()
+
+function post_meeting()
 {
   if(submitted == true) { return false; }
   submitted = true;
 
   var form = $("#mainForm").serialize();
   $.ajax({    
+        url:'submit_meeting.php?g=' + gid,
+        type: 'post',
+        data: form,
+        success: function(data) 
+        {
+          $("#submitMessage").html(data);
+          submitted = false;
+        }
+    });
 
+  return false;
+}
+
+function fill_dropdown()
+{
+  var form = $("#mainForm").serialize();
+  $.ajax({    
         url:'get_good_dates.php?g=' + gid,
         type: 'post',
         data: form,
         success: function(data) 
         {
-        	//$("#debug").html(data);
         	$("#time").html(data);
-          submitted = false;
         }
     });
 
@@ -108,6 +90,7 @@ function fill_dropdown()
 $("#year").change(fill_dropdown);
 $("#day").change(fill_dropdown);
 $("#month").change(fill_dropdown);
+$("#submit").bind('click',post_meeting);
 fill_dropdown();
 </script>
 
