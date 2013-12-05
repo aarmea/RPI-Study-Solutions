@@ -15,6 +15,3 @@ if (!$client->exists()) {
 
 // TODO: CAS failure condition (we don't have to worry about it so much because
 // CAS will not redirect the browser to this page on common failure cases)
-
-
-?>

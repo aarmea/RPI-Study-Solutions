@@ -6,8 +6,7 @@
   require_once "classes/user.php";
 
   global $db;
-  phpCAS::forceAuthentication();
-  $client = new User(phpCAS::getUser());
+  require_once "login.php"
   $rcsid = $client->username();
 
   $error = false;

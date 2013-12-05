@@ -5,8 +5,7 @@ require_once "auth/cas_init.php";
 require_once "classes/user.php";
 require_once "classes/group.php";
 
-phpCAS::forceAuthentication();
-$client = new User(phpCAS::getUser());
+require_once "login.php"
 ?>
 <?php include "resources/head.php"; ?>
 <body>
