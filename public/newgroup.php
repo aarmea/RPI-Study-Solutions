@@ -10,7 +10,7 @@ if (isset($_POST["create_group"]) && isset($_POST["name"])) {
   $members = array(phpCAS::getUser());
   if (isset($_POST["members"])) {
     $members = array_merge(
-      $members, array_map("trim", explode(",", $_POST["members"])));
+      $members, array_map("trim", array_filter(explode(",", $_POST["members"]))));
   }
   $newGroup = addGroup($_POST["name"], $members);
 
@@ -20,6 +20,7 @@ if (isset($_POST["create_group"]) && isset($_POST["name"])) {
 
 include "resources/head.php";
 ?>
+<div id="container">
 <body>
   <?php include "resources/topbar.php"; ?>
   <div id="content">
@@ -32,6 +33,7 @@ include "resources/head.php";
       <input type="submit" name="create_group" value="Create">
     </form>
   </div>
+</div>
   <?php include "resources/footer.php"; ?>
 </body>
 </html>

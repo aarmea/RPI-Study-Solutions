@@ -7,15 +7,13 @@ require_once "classes/group.php";
 
 require_once "login.php"
 ?>
+<div id="container">
 <?php include "resources/head.php"; ?>
 <body>
   <?php include "resources/topbar.php"; ?>
   <div id="content">
     <?php
     if (isset($_POST['group_id'])) {
-      $group = new Group($_POST['group_id']);
-    }
-    if (isset($_POST['submit'])) {
       try {
 
         $stmt = $db->prepare("INSERT INTO threads (group_id, threadName) VALUES (:group_id, :threadName)");
@@ -35,10 +33,10 @@ require_once "login.php"
       }
     }
     ?>
-    <h2>Create Thread for <?php echo $group->name(); ?></h2>
+    <h2>Create Thread</h2>
     <form action="#" method="post">
-      <input type="hidden" name="group_id" value="<?php echo $group->id(); ?>">
-      <!-- <select name="group_id">
+      <label style="background-color: transparent;">Group_id:</label>
+      <select name="group_id">
         <?php
           $groups = listGroups();
           foreach ($groups as $key => $value) {
@@ -47,14 +45,15 @@ require_once "login.php"
             <?php
           }
         ?>
-      </select> -->
+      </select>
       <label>Thread Name:</label>
       <input type="text" name="threadName">
       <label>Post Body:</label>
       <textarea cols="40" rows="5" name="postBody"> Now we are inside the area - which is nice. </textarea>
-      <input type="submit" name="submit" value="Submit">
+      <input type="submit" value="Submit">
     </form>
   </div>
-  <?php include "resources/footer.php"; ?>
+</div>
+    <?php include "resources/footer.php"; ?>
 </body>
 </html>

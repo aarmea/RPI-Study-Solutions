@@ -8,6 +8,7 @@ require_once "login.php";
 phpCAS::forceAuthentication();
 $client = new User(phpCAS::getUser());
 ?>
+  <div id="container">
 <?php include "resources/head.php"; ?>
 <body>
   <?php include "resources/topbar.php"; ?>
@@ -73,7 +74,7 @@ $client = new User(phpCAS::getUser());
     }else{
 
       ?>
-      <h2>Group selecte</h2>
+      <h2>Group select</h2>
 
       <?php 
 
@@ -103,6 +104,7 @@ $client = new User(phpCAS::getUser());
   } 
   ?>
 
+</div>
 </div>
 <?php include "resources/footer.php"; ?>
 </body>

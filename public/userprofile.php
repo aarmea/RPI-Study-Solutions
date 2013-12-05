@@ -21,6 +21,7 @@ a
   <body>
     <script src="js/profile.js"></script>
     <?php include "resources/topbar.php";?>
+    <div id="container">
     <div id="content2">
     <h2>Welcome, 
       <?php 
@@ -29,7 +30,7 @@ a
           echo "<br>You are logged in as admin";
       ?>
     </h2>
-     <img src="<?=$client->imageURL()?>">
+     <img class="profile" src="<?=$client->imageURL()?>">
     <p><?=$client->fullname()?>
       <span id="username"><?=$client->username()?></span></p>
     <p><?=$client->major()?>, Class of <?=$client->yog()?></p>
@@ -94,6 +95,7 @@ a
       <div id="savedNotes"><p>Saved Notes:<br><span id="theNotes"><?php echo $results->notes ?></span></p></div>
     </div>
   </div>
+</div>
  <p><?php include "resources/footer2.php"; ?></p>
 </body>
 </html>

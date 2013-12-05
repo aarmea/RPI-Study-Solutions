@@ -1,4 +1,5 @@
-
+html, #container { height: 96.1%; }
+body > #container { height: auto; min-height: 100%; }
 
 body{
   overflow: auto;
@@ -8,6 +9,7 @@ body{
     -o-background-size: cover;
     background-size: cover;
     color:black; 
+    height: 100%;
 }
 body *{
 }
@@ -26,27 +28,31 @@ body *{
   display: inline;
   padding: 5px;
 }
-#footer{
-  width: 80%;
-  margin: auto;
-  text-align: center;
-  font-size:13px;
-  color:blue;
+#footer { 
   text-shadow: none;
-  margin-bottom: 0px;
+  clear: both; 
+  position: relative; 
+  z-index: 10; 
+  height: 3em; 
+  margin-top: -3em; 
+  background-color: rgba(2,2,2,.4); 
+  color: white; font-size: 200%; 
+  text-align: center; 
+  line-height: 3em; 
+  font-size: 13px;
 }
 
 #footer2{
-  width: 80%;
-  margin: auto;
-  text-align: center;
-  font-size:13px;
-  color:blue;
   text-shadow: none;
-  margin-bottom: 0px;
-  border-width:3px;
-  border-color: green;
-  border-top: none;
+  clear: both; 
+  position: relative; 
+  z-index: 10; 
+  height: 3em; 
+  margin-top: -3em; 
+  background-color: rgba(2,2,2,.4); 
+  color: white; font-size: 200%; 
+  text-align: center; 
+  line-height: 3em; 
 }
 #content{
   width: 80%;
@@ -54,18 +60,23 @@ body *{
   margin: auto;
   margin-top: 30px;
   margin-bottom: 30px;
+  padding-bottom: 3em;
 }
 
 #content2{
-  width: 80%;
   overflow: auto;
-  margin: auto;
-  margin-top: 30px;
-  border-style:solid;
-  border-width:3px;
-  border-color: green;
-  border-bottom: none;
-  
+  padding-bottom: 3em; 
+  width: 60%; 
+  margin: 0 auto;
+  padding-bottom: 5em;
+}
+#content2 a {
+ color:black;
+}
+#content2 a:hover {
+   color: white;
+}
+
 }
 #signUpDiv{
   float: left;
@@ -116,12 +127,14 @@ body *{
 
 .logoImage{
   float: left;
-  height: 200px;
-  width: 25%;
+  height: 178px;
+  width: 30%;
   position: relative;
-  margin-right: 10%;
-  margin-left:5%;
-  margin-top: 10px;
+  padding-right: 10%;
+  padding-left:5%;
+  padding-top: 22px;
+  margin-top: 5px;
+  background-color: rgba(2,2,2,.4);
 }
 h2{
     color:black;
@@ -186,4 +199,18 @@ h3{
   font-size:20px;
   font-style:italic;
   text-align:center;
+}
+
+input, select, textarea {
+  background-color: rgba(2,2,2,.4);
+  color: white;
+}
+
+a:link {color:white;}      /* unvisited link */
+a:visited {color:white;}  /* visited link */
+a:hover {color:grey;}  /* mouse over link */
+a:active {color:white;}
+
+.profile {
+  border-radius:10px;
 }

@@ -15,14 +15,14 @@ background-color:  rgb(249, 249, 249)
 .jimgMenu {
 	position:relative;
 	float: right;
-	margin: -203px 0px 0px 935px;
 	padding: 0px;
-	width:665px;
+	width:40%;
 	height:200px;
 	overflow: hidden;
-	margin-right: 10%;
- 	margin-left:5%;
- 	margin-top: 10px;
+	padding-right: 10%;
+ 	padding-left:5%;
+ 	margin-top: 5px;
+ 	background-color: rgba(2,2,2,.4);
  }
 
 .jimgMenu ul {
