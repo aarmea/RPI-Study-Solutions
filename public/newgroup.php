@@ -10,7 +10,7 @@ if (isset($_POST["create_group"]) && isset($_POST["name"])) {
   $members = array(phpCAS::getUser());
   if (isset($_POST["members"])) {
     $members = array_merge(
-      $members, array_map("trim", explode(",", $_POST["members"])));
+      $members, array_map("trim", array_filter(explode(",", $_POST["members"]))));
   }
   $newGroup = addGroup($_POST["name"], $members);
 
