@@ -67,7 +67,7 @@ a
         <!-- TODO: Add a way to add more users to a group if you are in it. -->
         
       </ul>
-      <a href="newmembers.php"><button>Invite New Members</button></a>
+      <a href="newmembers.php?g=<?=$_GET["g"]?>"><button>Invite New Members</button></a>
     </section>
 
     <section id="threads">
