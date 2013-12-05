@@ -1,5 +1,5 @@
-<!DOCTYPE html>
 <?php include "resources/head.php"; ?>
+
 <html>
 <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 <body>

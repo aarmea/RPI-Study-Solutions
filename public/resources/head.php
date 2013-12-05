@@ -1,3 +1,5 @@
+<?php require_once "auth/cas_init.php"; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
