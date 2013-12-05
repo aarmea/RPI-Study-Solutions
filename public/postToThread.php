@@ -10,12 +10,18 @@ require_once "classes/post.php";
 phpCAS::forceAuthentication();
 $client = new User(phpCAS::getUser());
 ?>
-<?php include "resources/head.php"; ?>
+<?php 
+if (!isset($_POST['t_id'])) {
+  header( 'Location: ./' ) ;
+}
+include "resources/head.php"; ?>
 <body>
   <?php include "resources/topbar.php"; ?>
   <div id="content">
-    <?php print_r($_POST);
-    $the_thread = new Thread($_POST['t_id']) ?>
+    <?php
+    if (isset($_POST['t_id'])) {
+      $the_thread = new Thread($_POST['t_id']) 
+    ?>
     <h2>Posting to <?php echo $the_thread->name(); ?></h2>
     <form name="forumPostForm" action="groupThread.php" method="POST">
       <input type="hidden" name="t_id" value="<?php echo $_POST['t_id']; ?>">
@@ -27,6 +33,9 @@ $client = new User(phpCAS::getUser());
        ?></textarea>      
       <input type="submit" name="submit" value="Submit">
     </form>
+    <?php
+    }
+    ?>
   </div>
   <?php include "resources/footer.php"; ?>
 </body>

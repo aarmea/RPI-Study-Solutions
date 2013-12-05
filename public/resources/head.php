@@ -13,6 +13,3 @@
 <div class="logoImage">
   <a href="index.php"><img src="resources/images/newphoto.png"></a>
 </div>
-
-</body>
-</html>

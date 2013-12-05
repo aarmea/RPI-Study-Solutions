@@ -13,7 +13,6 @@ $client = new User(phpCAS::getUser());
   <div id="content">
     <?php
     if (isset($_POST['t_id'])) {
-      print_r($_POST);
       if (isset($_POST['submit'])) {
         addPost($_POST['t_id'], $client->username(), $_POST['postBody']);
       }
@@ -37,9 +36,6 @@ $client = new User(phpCAS::getUser());
         try {
           $results = $db->query('SELECT * FROM posts INNER JOIN users on posts.user_id = users.rcsid WHERE t_id=' . $_POST['t_id']);
           foreach ($results as $row) {
-         // echo '<pre>';
-         // print_r($row);
-         // echo '</pre>';
             ?>
             <div id="post-<?php echo $row->p_id; ?>" class="post">
               <div class="metaPost">
