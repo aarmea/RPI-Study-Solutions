@@ -34,8 +34,8 @@ include "resources/head.php";?>
       }
       ?>
     </div>
-    <div id="calendar"></div>
     <h2><?=$group->name()?> Calendar</h2>
+    <div id="calendar"></div>
      <script>
      $('#calendar').datepicker({
     inline: true,
@@ -44,7 +44,6 @@ include "resources/head.php";?>
     dayNamesMin: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     });
     </script>
-    <div id="calendar"></div>
     </section>
     <section id="members">
       <h2>Members</h2>
