@@ -23,7 +23,7 @@ if ($haveDate)
 	$year=$_POST["year"];
 	$day=$_POST["day"];
 	$eventName=$_POST["eventName"];
-	$hour=12;
+	$hour=$_POST["time"];
 
 	//validate date and check for empty fields
 	$valiDate=checkdate($month,$day,$year);
