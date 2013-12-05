@@ -51,7 +51,7 @@ a
       $res = $db->prepare("SELECT * FROM group_meetings
         INNER JOIN group_members ON group_members.rcsid = :username
         ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
-                  group_meetings.hour,group_meetings.min " );
+                  group_meetings.hour" );
       $res->execute(array(':username'=>$client->username()));
       $results=$res->fetch();
       $index='0';
@@ -64,10 +64,9 @@ a
           $month[$index]=$results->month;
           $day[$index]=$results->day;
           $hour[$index]=$results->hour;
-          $min[$index]=$results->minute;
         }
         echo '<h3>Next Meeting: '.$month['0'].' '.$day['0'].' '.$year['0']
-              .' at '.$hour['0'].':'.$min['0'].'</h3>';
+              .' at '.$hour['0'].':'.'</h3>';
       }
       ?>
     </div>

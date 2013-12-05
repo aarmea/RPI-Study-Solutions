@@ -27,7 +27,7 @@ a
       $res = $db->prepare("SELECT * FROM group_meetings
         INNER JOIN groups ON groups.groupid = :groupid
         ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
-                  group_meetings.hour,group_meetings.min " );
+                  group_meetings.hour" );
       $res->execute(array(':groupid'=>$group->id()));
       $results=$res->fetch();
       $index='0';
@@ -40,10 +40,9 @@ a
           $month[$index]=$results->month;
           $day[$index]=$results->day;
           $hour[$index]=$results->hour;
-          $min[$index]=$results->minute;
         }
         echo '<h3>Next Meeting: '.$month['0'].' '.$day['0'].' '.$year['0']
-              .' at '.$hour['0'].':'.$min['0'].'</h3>';
+              .' at '.$hour['0'].':'.'</h3>';
       }
       ?>
     </div>
