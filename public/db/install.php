@@ -28,6 +28,7 @@ try {
     `yog` YEAR,
     `major` VARCHAR(64),
     `notes` text(1000),
+    `isadmin` TINYINT NOT NULL DEFAULT 0,
     PRIMARY KEY (`rcsid`)
     ) ENGINE=InnoDB";
   $dbh->exec($sql);

@@ -92,7 +92,21 @@
       <h2>Settings</h2>
       <div id="calendarSettings">
         <h3>Set availability</h3>
+
+        <p id = "cur_week"></p>
+        <button id="prevweek">Previous Week</button>
+        <button id="nextweek">Next Week</button>
+
         <div id="timegrid"></div>
+        <div id="timegrid2"></div>
+        <div id="timegrid3"></div>
+        <div id="timegrid4"></div>
+        <div id="timegrid5"></div>
+        <div id="timegrid6"></div>
+        <div id="timegrid7"></div>
+        <div id="timegrid8"></div>
+        <div id="timegrid9"></div>
+        <div id="timegrid10"></div>
       </div>
       
         <button id="selectall">Select All</button>

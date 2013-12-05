@@ -9,7 +9,13 @@ require_once "login.php"
   <body>
     <?php include "resources/topbar.php";?>
     <div id="content">
-    <h2>Welcome, <?=$client->shortname()?></h2>
+    <h2>Welcome, 
+      <?php 
+        echo $client->shortname();
+        if(isset($_SESSION['admin']) && $_SESSION['admin'] == true)
+          echo "<br>You are logged in as admin";
+      ?>
+    </h2>
      <img src="<?=$client->imageURL()?>">
     <p><?=$client->fullname()?>
       <span id="username"><?=$client->username()?></span></p>
