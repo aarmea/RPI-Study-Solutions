@@ -63,6 +63,12 @@ require_once "login.php"
         <textarea id="notes" name="notes" rows="10" cols="100" placeholder="My notes..."></textarea>
         <input id="submitNotes" type="submit" name="save" value="Save"/>
       </form>
+      <?php if ($_POST['save'])
+      {
+        $query=$db->prepare("UPDATE `users` SET `notes`=:text WHERE `rcsid`= :username");
+        $query->execute(array(':username'=>$client->username(),
+                              ':text'=>$_POST['notes']));
+      }?>
       <?php
         $res = $db->prepare("SELECT `notes` FROM `users` WHERE `rcsid` = :username");
         $res->execute(array(':username'=>$client->username()));
