@@ -95,11 +95,12 @@ a
 
     <section id="threads">
       <h3>Group Thread</h3>
+      <?php
+            $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
+            if($results->t_id>0){?>
       <form action="groupThread.php" method="post">
           <select name="t_id">
-            <?php
-            $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
-            foreach ($results as $row) {
+            <?php foreach ($results as $row) {
              ?>
              <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
              <?php
@@ -109,10 +110,8 @@ a
          </select>
         <input type="submit" value="Go to thread">
        </form>
-       <form action="createThread.php" method="post">
-        <input type="hidden" name="group_id" value="<?php echo $_GET['g']; ?>">
-        <input type="submit" value="Create new thread">
-       </form>
+      <?php } ?>
+       <p><a href="createThread.php">Create New Thread</a></p>
         <?php 
         if ($client->isadmin()) {
         ?>
