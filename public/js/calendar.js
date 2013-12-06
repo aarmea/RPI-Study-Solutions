@@ -70,8 +70,5 @@ $(function() {
   $(".ui-state-default").on("mouseout", function() {
     $("#hoverDay").text('Hover over a day to see appointments.');
    });
-  $(".ui-state-default").on("click", function() {
-    $("#scheduleDay").text('CLICK.');
-   });
 });
 
