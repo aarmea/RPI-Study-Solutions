@@ -66,7 +66,7 @@ require_once "login.php"
     ?>
     <div id="meetings">
         <?php
-      $res = $db->prepare("SELECT * FROM group_meetings
+      $res = $db->prepare("SELECT DISTINCT * FROM group_meetings
         INNER JOIN group_members ON group_members.rcsid = :username
         ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
                   group_meetings.hour" );

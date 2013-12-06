@@ -28,12 +28,11 @@ require_once "login.php"
       <div id="meetings">
           <?php
         $res = $db->prepare("SELECT DISTINCT * FROM group_meetings
-          INNER JOIN groups ON group_meetings.groupid = :groupid
+          WHERE group_meetings.groupid = :groupid
           ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
                     group_meetings.hour" );
         $res->execute(array(':groupid'=>$group->id()));
         $results=$res->fetchAll();
-        $index='0';
         //echo var_dump($results);
         if(sizeof($results)==0) 
           echo "<span>No meetings are scheduled</span>";
@@ -48,8 +47,8 @@ require_once "login.php"
             $hour=$row->hour;
             $min=$row->min;
             $location=$row->location;
-            if ($hour['0'] < 10) $displayHour='0'.$hour['0']; else $displayHour=$hour['0'];
-            if ($min['0'] < 10) $displayMin='0'.$min['0']; else $displayMin=$min['0'];
+            if ($hour < 10) $displayHour='0'.$hour; else $displayHour=$hour;
+            if ($min < 10) $displayMin='0'.$min; else $displayMin=$min;
             echo '<p>'.$name.'<br>'.date("F", strtotime($month)).' '.$day.', '.$year
                   .' at '.$displayHour.':'.$displayMin.' '.$location.
             '<button type="submit" name="removeMeeting" value = "' . $row->meetingid .'">Remove</button></p>';
