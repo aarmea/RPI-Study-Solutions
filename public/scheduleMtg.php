@@ -9,6 +9,8 @@ require_once "login.php"
 <body>
 <?php include "resources/topbar.php" ?>
 <div id="content">
+<h2>Schedule an Event</h2>
+<p><a href="group.php?g=<?=$_GET["g"]?>">Return to Group Page</a></p>
 <p>A red time in the hour drop down means that someone in your group is unavailable at that time</p>
 <form id="mainForm" method="post" action="scheduleMtg.php?g=<?=$_GET["g"]?>">
 	<div class="formData">
@@ -29,10 +31,10 @@ require_once "login.php"
 	</select>
 	<input type="text" name="eventName" placeholder="Event Name"/>
 	<input type="text" name="location" placeholder="Location"/>
-    <input id="submit" type="submit" value="submit" id="submit" name="submit"/>
+  <input id="submit" type="submit" value="submit" id="submit" name="submit"/>
 </div>
 </form>
-<h2 id="submitMessage"></h2>
+<p id="submitMessage"></p>
 <div id="calendar"></div>
   <script src="js/calendar.js"></script>
 </div>
