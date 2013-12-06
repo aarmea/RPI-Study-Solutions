@@ -16,6 +16,7 @@ a
   font-weight:bold;
 }
 </style>
+
 <?php include "resources/head.php"; ?>
 <body>
   <?php
@@ -23,37 +24,58 @@ a
     $res = $db->prepare("DELETE FROM threads WHERE t_id=:t_id;");
     $res->execute(array(':t_id'=>$_POST['t_id']));
   }
+  if(isset($_POST['removeMeeting']))
+  {
+    $id = $_POST['removeMeeting'];
+
+    $query = $db->prepare("DELETE FROM group_meetings WHERE meetingid=:meetingid");
+
+    $query->execute(array(":meetingid"=>$id));
+  }
   ?>
 <?php include "resources/topbar.php"?>
   <div id="content">
 <? if ($group->exists()) { ?>
     <h2>Group: <?=$group->name()?></h2>
-    <div id="meetings">
-        <?php
-      $res = $db->prepare("SELECT * FROM group_meetings
-        INNER JOIN groups ON groups.groupid = :groupid
-        ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
-                  group_meetings.hour" );
-      $res->execute(array(':groupid'=>$group->id()));
-      $results=$res->fetch();
-      $index='0';
-      if(sizeof($results->day)==0) echo "<h3>No meetings are scheduled</h3>";
-      else
-      {
-        foreach ($results as $row) 
+    <h3>Meetings</h3>
+    <form method="post" action="group.php?g=<?=$group->id()?>" />
+      <div id="meetings">
+          <?php
+        $res = $db->prepare("SELECT DISTINCT * FROM group_meetings
+          INNER JOIN groups ON groups.groupid = :groupid
+          ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
+                    group_meetings.hour" );
+        $res->execute(array(':groupid'=>$group->id()));
+        $results=$res->fetchAll();
+        $index='0';
+        //echo var_dump($results);
+        if(sizeof($results)==0) 
+          echo "<span>No meetings are scheduled</span>";
+        else
         {
-          $year[$index]=$results->year;
-          $month[$index]=$results->month;
-          $day[$index]=$results->day;
-          $hour[$index]=$results->hour;
+          foreach ($results as $row) 
+          {
+            /*
+            $year[$index]=$row->year;
+            $month[$index]=$row->month;
+            $day[$index]=$row->day;
+            $hour[$index]=$row->hour;
+            */
+            echo '<p>'.$row->name.':'.$row->month.'/'.$row->day.'/'.$row->year
+                .' at '.$row->hour.':00';
+            echo '<button type="submit" name="removeMeeting" value = "' . $row->meetingid .'">Remove</button>';
+            echo '</p>';
+          }
+          //echo '<h3>Next Meeting: '.$month['0'].'/'.$day['0'].'/'.$year['0']
+          //      .' at '.$hour['0'].':00'.'</h3>';
         }
-        echo '<h3>Next Meeting: '.$month['0'].' '.$day['0'].' '.$year['0']
-              .' at '.$hour['0'].':'.'</h3>';
-      }
-      ?>
-    </div>
+        ?>
+      </div>
+    </form>
     <a href="scheduleMtg.php?g=<?=$group->id()?>"><button>Schedule a meeting for this group</button></a>
-    <h3><?=$group->name()?>'s Calendar</h3>
+    
+    <!--<h3><?=$group->name()?>'s Calendar</h3>
+
     <div id="calendar"></div>
      <script>
      $('#calendar').datepicker({
@@ -63,6 +85,8 @@ a
     dayNamesMin: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
     });
     </script>
+    -->
+
     </section>
     <section id="members">
       <h3>Members</h3>

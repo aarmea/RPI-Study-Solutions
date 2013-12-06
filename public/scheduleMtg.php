@@ -34,6 +34,7 @@ require_once "login.php"
 <!--
 <h2><?php if(isset($_POST['submit'])) {echo $msg; } ?></h2>
 -->
+A red time in the hour drop down means that somebody in your group is unavailable at that time
 <h2 id="submitMessage"></h2>
 <div id="calendar"></div>
 

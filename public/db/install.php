@@ -68,12 +68,14 @@ try {
 
     $sql = "CREATE TABLE IF NOT EXISTS `group_meetings` (
     `groupid` INT UNSIGNED NOT NULL,
+    `meetingid` INT NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(255) NOT NULL,
     `year` INT(4) NOT NULL,
     `month` INT(2) NOT NULL,
     `day` INT(2) NOT NULL,
     `hour` INT(2) NOT NULL,
     `is_owner` BOOL DEFAULT FALSE,
+    PRIMARY KEY (`meetingid`),
     FOREIGN KEY (`groupid`) REFERENCES `groups`(`groupid`)
     ON UPDATE CASCADE ON DELETE CASCADE
     ) ENGINE=InnoDB";

@@ -36,15 +36,14 @@ else
 {
   $msg="Meeting successfuly scheduled";
   
-  $query=$db->prepare("INSERT INTO `group_meetings` (`groupid`, `name`, `year`,`month`,`day`,`hour`,`min`)
-    VALUES (:groupid, :name, :year,:month,:day,:hour,:min)");
+  $query=$db->prepare("INSERT INTO `group_meetings` (`groupid`, `name`, `year`,`month`,`day`,`hour`)
+    VALUES (:groupid, :name, :year,:month,:day,:hour)");
       $query->execute(array(':groupid'=>$group->id(),
                             ':name'=>$name,
                             ':year'=>$year,
                             ':month'=>$month,
                             ':day'=>$day,
-                            ':hour'=>$hour,
-                            ':min'=>0));
+                            ':hour'=>$hour));
                             
 }
 echo $msg;
