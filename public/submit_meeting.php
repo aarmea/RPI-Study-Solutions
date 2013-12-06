@@ -22,17 +22,17 @@ $now->setTimeStamp($_SERVER['REQUEST_TIME']);
 
 //echo var_dump($date);
 //echo var_dump($now);
-
+$msg='';
 $valiDate=checkdate($month,$day,$year);
 if(!isset($name) || $name == "")
-  $msg="Please enter in an event name";
-else if(!isset($hour))
-  $msg="Hour not set";
-else if(!$valiDate)
-  $msg="Invalid date entered";
-else if($now > $date)
-  $msg="Date has already passed";
-else
+  $msg.="<li>Please enter an event name</li>";
+if(!isset($hour))
+  $msg.="<li>Hour not set</li>";
+if(!$valiDate)
+  $msg.="<li>Invalid date entered</li>";
+if($now > $date)
+  $msg.="<li>Date has already passed</li>";
+if($msg=='')
 {
   $msg="Meeting successfuly scheduled";
   
@@ -46,7 +46,11 @@ else
                             ':hour'=>$hour));
                             
 }
-echo $msg;
-
-
-?>
+else { ?>
+      <div id="messages">
+        <h4>Please correct the following errors:</h4>
+        <ul>
+          <?php echo $msg; ?>
+        </ul>
+      </div>
+  <?php }?>
