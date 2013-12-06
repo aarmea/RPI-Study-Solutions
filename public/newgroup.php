@@ -29,7 +29,7 @@ include "resources/head.php";
       <label for="groupname_input">Group name:</label>
       <input id="groupname_input" type="text" name="name" required>
       <label for="members_input">Additional group members (by RCS ID):</label>
-      <input id="members_input" type="text" name="members" value="<?php echo $client->username() . ' '; ?>">
+      <input id="members_input" type="text" name="members" value="">
       <input type="submit" name="create_group" value="Create">
     </form>
   </div>
