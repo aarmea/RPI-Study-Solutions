@@ -6,17 +6,6 @@ require_once "classes/user.php";
 require_once "login.php"
 ?>
 
-<style>
-p, a
-{
-  font-size:15px;
-}
-a
-{
-  font-weight:bold;
-}
-</style>
-
 <?php include "resources/head.php";?>
   <body>
     <?php
@@ -29,7 +18,7 @@ a
     <?php include "resources/topbar.php";?>
     <div id="container">
     <div id="content2">
-    <h2>Welcome, 
+    <h2 id="welcome">Welcome, 
       <?php 
         echo $client->shortname();
         if($client->isadmin() == true)
@@ -37,10 +26,12 @@ a
       ?>
     </h2>
      <img class="profile" src="<?=$client->imageURL()?>">
+    <div id="userInfo">
     <p><?=$client->fullname()?>
       <span id="username"><?=$client->username()?></span></p>
     <p><?=$client->major()?>, Class of <?=$client->yog()?></p>
-    <a href="settings.php">Settings</a>
+  </div>
+    <p><a href="settings.php">Settings</a></p>
     <div id="divOfGroups">
       <h3>Subscribed Groups:</h3>
       <ul id="ulOfGroups">
@@ -65,7 +56,6 @@ a
            ?>
            <option value="<?php echo $row->groupid; ?>"><?php echo $row->groupname; ?></option>
            <?php
-
          }
          ?>
        </select>
