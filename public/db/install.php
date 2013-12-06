@@ -34,14 +34,6 @@ try {
   $dbh->exec($sql);
   echo "Successfully created the users table.\n";
 
-  $sql = "INSERT INTO users (rcsid) VALUES ('user1')";
-  $dbh->exec($sql);
-
-  $sql = "INSERT INTO users (rcsid) VALUES ('user2')";
-  $dbh->exec($sql);
-
-  $sql = "INSERT INTO users (rcsid) VALUES ('user3')";
-  $dbh->exec($sql);
 
   $sql = "CREATE TABLE IF NOT EXISTS `available_times` (
     `rcsid` VARCHAR(10) NOT NULL,
