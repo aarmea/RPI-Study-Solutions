@@ -19,7 +19,7 @@ require_once "login.php"
     $query->execute(array(":meetingid"=>$id));
   }
   ?>
-<?php include "resources/topbar.php"?>
+<?php include "resources/topbar.php" ?>
   <div id="content">
 <? if ($group->exists()) { ?>
     <h2><?=$group->name()?></h2>
