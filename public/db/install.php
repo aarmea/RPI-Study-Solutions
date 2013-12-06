@@ -75,6 +75,7 @@ try {
     `day` INT(2) NOT NULL,
     `hour` INT(2) NOT NULL,
     `min` INT(2) NOT NULL,
+    `location` VARCHAR(100) NOT NULL,
     `is_owner` BOOL DEFAULT FALSE,
     PRIMARY KEY (`meetingid`),
     FOREIGN KEY (`groupid`) REFERENCES `groups`(`groupid`)

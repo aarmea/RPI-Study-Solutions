@@ -9,7 +9,7 @@ require_once "login.php"
 <body>
 <?php include "resources/topbar.php" ?>
 <div id="content">
-<p>A red time in the hour drop down means that somebody in your group is unavailable at that time</p>
+<p>A red time in the hour drop down means that someone in your group is unavailable at that time</p>
 <form id="mainForm" method="post" action="scheduleMtg.php?g=<?=$_GET["g"]?>">
 	<div class="formData">
 	<select name='month' id='month'>
@@ -28,6 +28,7 @@ require_once "login.php"
 	?>
 	</select>
 	<input type="text" name="eventName" placeholder="Event Name"/>
+	<input type="text" name="location" placeholder="Location"/>
     <input id="submit" type="submit" value="submit" id="submit" name="submit"/>
 </div>
 </form>

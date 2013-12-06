@@ -93,11 +93,12 @@ a
           $day[$index]=$results->day;
           $hour[$index]=$results->hour;
           $min[$index]=$results->min;
+          $location[$index]=$results->location;
         }
         if ($hour['0'] < 10) $displayHour='0'.$hour['0']; else $displayHour=$hour['0'];
         if ($min['0'] < 10) $displayMin='0'.$min['0']; else $displayMin=$min['0'];
         echo '<h3>Next Meeting: '.date("F", strtotime($month['0'])).' '.$day['0'].', '.$year['0']
-              .' at '.$displayHour.':'.$displayMin.'</h3>';
+              .' at '.$displayHour.':'.$displayMin.' Location: '.$location['0'].'</h3>';
       }
       ?>
     </div>

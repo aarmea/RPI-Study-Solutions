@@ -61,10 +61,11 @@ a
             $day=$row->day;
             $hour=$row->hour;
             $min=$row->min;
+            $location=$row->location;
             if ($hour['0'] < 10) $displayHour='0'.$hour['0']; else $displayHour=$hour['0'];
             if ($min['0'] < 10) $displayMin='0'.$min['0']; else $displayMin=$min['0'];
             echo '<p>'.$name.'<br>'.date("F", strtotime($month)).' '.$day.', '.$year
-                  .' at '.$displayHour.':'.$displayMin.
+                  .' at '.$displayHour.':'.$displayMin.' Location: '.$location.
             '<button type="submit" name="removeMeeting" value = "' . $row->meetingid .'">Remove</button></p>';
           }
         }

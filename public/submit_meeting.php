@@ -13,6 +13,7 @@ $year=$_POST["year"];
 $day=$_POST["day"];
 $hour=$_POST['time'];
 $name=$_POST['eventName'];
+$location=$_POST['location'];
 //validate date
 $date = new DateTime();
 $date->setDate ( $year , $month , $day );
@@ -26,6 +27,8 @@ $msg='';
 $valiDate=checkdate($month,$day,$year);
 if(!isset($name) || $name == "")
   $msg.="<li>Please enter an event name</li>";
+if(!isset($location) || $location == "")
+  $msg.="<li>Please enter a location for the event</li>";
 if(!isset($hour))
   $msg.="<li>Hour not set</li>";
 if(!$valiDate)
@@ -36,14 +39,15 @@ if($msg=='')
 {
   $msg="Meeting successfuly scheduled";
   
-  $query=$db->prepare("INSERT INTO `group_meetings` (`groupid`, `name`, `year`,`month`,`day`,`hour`)
-    VALUES (:groupid, :name, :year,:month,:day,:hour)");
+  $query=$db->prepare("INSERT INTO `group_meetings` (`groupid`, `name`, `year`,`month`,`day`,`hour`,`location`)
+    VALUES (:groupid, :name, :year,:month,:day,:hour,:location)");
       $query->execute(array(':groupid'=>$group->id(),
                             ':name'=>$name,
                             ':year'=>$year,
                             ':month'=>$month,
                             ':day'=>$day,
-                            ':hour'=>$hour));
+                            ':hour'=>$hour,
+                            ':location'=>$location));
 
   echo $msg;
                             
