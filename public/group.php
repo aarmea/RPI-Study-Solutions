@@ -111,9 +111,10 @@ a
         <?php
         // $results = $db->query('SELECT COUNT(*) FROM `group_members` WHERE groupid=' . $_GET['g'] . ' AND rcsid=' . $client->username() . ' AND is_owner=1');
         $res = $db->prepare('SELECT COUNT(*) FROM `group_members` WHERE groupid=:groupid AND rcsid=:rcsid AND is_owner=1');
-        $res->execute(array(':groupid'=>$_POST['g'], ':rcsid'=>$client->username()));
-        // todo
-        if ($client->isadmin()) {
+        $res->execute(array(':groupid'=>$_GET['g'], ':rcsid'=>$client->username()));
+        $isOwner = $res->fetch();
+        $isOwner = get_object_vars($isOwner);
+        if ($isOwner['COUNT(*)'] >= 1) {
         ?>
          <form action="#" method="post">
             <select name="t_id">

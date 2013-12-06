@@ -14,6 +14,9 @@ require_once "login.php"
   <div id="content">
     <?php
     if (isset($_POST['group_id'])) {
+       $group = new Group($_POST['group_id']);
+     }
+     if (isset($_POST['submit'])) {
       try {
 
         $stmt = $db->prepare("INSERT INTO threads (group_id, threadName) VALUES (:group_id, :threadName)");
@@ -35,17 +38,7 @@ require_once "login.php"
     ?>
     <h2>Create Thread</h2>
     <form action="#" method="post">
-      <label style="background-color: transparent;">Group_id:</label>
-      <select name="group_id">
-        <?php
-          $groups = listGroups();
-          foreach ($groups as $key => $value) {
-            ?>
-            <option value="<?php echo $value; ?>"><?php echo $key; ?></option>
-            <?php
-          }
-        ?>
-      </select>
+      <input type="hidden" name="group_id" value="<?php echo $group->id(); ?>">
       <label>Thread Name:</label>
       <input type="text" name="threadName">
       <label>Post Body:</label>
