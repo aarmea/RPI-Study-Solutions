@@ -19,6 +19,12 @@ a
 
 <?php include "resources/head.php";?>
   <body>
+    <?php
+    if (isset($_POST['isDelete'])) {
+      $res = $db->prepare("DELETE FROM groups WHERE groupid=:groupid;" );
+      $res->execute(array(':groupid'=>$_POST['g_id']));
+    }
+    ?>
     <script src="js/profile.js"></script>
     <?php include "resources/topbar.php";?>
     <div id="container">
@@ -51,7 +57,8 @@ a
     if ($client->isadmin()) {
     ?>
      <form action="#" method="post">
-        <select name="t_id">
+      <h2>Admin Delete a group</h2>
+        <select name="g_id">
           <?php
           $results = $db->query('SELECT * FROM groups');
           foreach ($results as $row) {
