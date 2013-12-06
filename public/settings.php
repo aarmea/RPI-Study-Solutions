@@ -120,7 +120,8 @@
           <input type="input" name="email" value= <?php echo '"' . getEmail() . '"'; ?> />
         <input id="posthidden" type="hidden" name="dates" />
         <br/><br/><br/>
-          <input id="submit" type="submit" name="SubmitChanges" value="Submit Changes" />
+        <h3>Submit Changes</h3>
+          <input id="submit" type="submit" name="SubmitChanges" value="Submit" />
       </form>
 
       <div id="refreshed">
