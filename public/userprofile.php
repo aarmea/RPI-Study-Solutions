@@ -122,7 +122,7 @@ a
               $res->execute(array(':username'=>$client->username()));
               $results=$res->fetch();
             ?>
-      <div id="savedNotes"><p>Saved Notes:<br><span id="theNotes"><?php echo $results->notes ?></span></p></div>
+      <div id="savedNotes"><p style="font-weight:bold">Saved Notes:<br><pre id="theNotes" style="font-size:15px"><?php echo $results->notes ?></pre></p></div>
     </div>
   </div>
 </div>

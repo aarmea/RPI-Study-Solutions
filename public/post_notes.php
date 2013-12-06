@@ -7,10 +7,12 @@ require_once "classes/user.php";
 
 require_once "login.php";
 
+$notes = $_POST['notes'];
+
 $query=$db->prepare("UPDATE `users` SET `notes`=:text WHERE `rcsid`= :username");
 $query->execute(array(':username'=>$client->username(),
-                      ':text'=>$_POST['notes']));
+                      ':text'=>$notes));
 
-echo $_POST['notes'];
+echo $notes;
 
 ?>
