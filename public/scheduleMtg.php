@@ -34,22 +34,12 @@ require_once "login.php"
 </form>
 <h2 id="submitMessage"></h2>
 <div id="calendar"></div>
-
-<script src="js/calendar.js"></script>
-	
+  <script src="js/calendar.js"></script>
 <script type="text/javascript">
 var submitted = false;
 var gid = <?php 
-						if(isset($_GET["g"]))
-						{ 
-							echo $_GET["g"]; 
-						} 
-						else 
-						{ 
-							echo 0; 
-						} 
-					?>;
-
+						if(isset($_GET["g"])) echo $_GET["g"]; 
+						else echo 0; ?>;
 function post_meeting()
 {
   if(submitted == true) { return false; }
@@ -82,7 +72,6 @@ function fill_dropdown()
         	$("#time").html(data);
         }
     });
-
   return false;
 }
 $("#year").change(fill_dropdown);
@@ -91,69 +80,5 @@ $("#month").change(fill_dropdown);
 $("#submit").bind('click',post_meeting);
 fill_dropdown();
 </script>
-
-<div id="debug"></div>
-
-</body>
-</html>
-<script src="js/calendar.js"></script>
-	
-<script type="text/javascript">
-var submitted = false;
-var gid = <?php 
-						if(isset($_GET["g"]))
-						{ 
-							echo $_GET["g"]; 
-						} 
-						else 
-						{ 
-							echo 0; 
-						} 
-					?>;
-
-function post_meeting()
-{
-  if(submitted == true) { return false; }
-  submitted = true;
-
-  var form = $("#mainForm").serialize();
-  $.ajax({    
-        url:'submit_meeting.php?g=' + gid,
-        type: 'post',
-        data: form,
-        success: function(data) 
-        {
-          $("#submitMessage").html(data);
-          submitted = false;
-        }
-    });
-
-  return false;
-}
-
-function fill_dropdown()
-{
-  var form = $("#mainForm").serialize();
-  $.ajax({    
-        url:'get_good_dates.php?g=' + gid,
-        type: 'post',
-        data: form,
-        success: function(data) 
-        {
-        	$("#time").html(data);
-        }
-    });
-
-  return false;
-}
-$("#year").change(fill_dropdown);
-$("#day").change(fill_dropdown);
-$("#month").change(fill_dropdown);
-$("#submit").bind('click',post_meeting);
-fill_dropdown();
-</script>
-
-<div id="debug"></div>
-
 </body>
 </html>
