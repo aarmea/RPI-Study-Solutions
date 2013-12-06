@@ -76,32 +76,21 @@ a
         ?>
       </div>
     </form>
-    <a href="scheduleMtg.php?g=<?=$group->id()?>"><button>Schedule a meeting for this group</button></a>
+    <p><a href="scheduleMtg.php?g=<?=$group->id()?>">Schedule a meeting for this group</a></p>
     
-    <!--<h3><?=$group->name()?>'s Calendar</h3>
+    <h3><?=$group->name()?>'s Calendar</h3>
 
     <div id="calendar"></div>
-     <script>
-     $('#calendar').datepicker({
-    inline: true,
-    firstDay: 1,
-    showOtherMonths: true,
-    dayNamesMin: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    });
-    </script>
-    -->
-
+    <script src="js/calendar.js"></script>
     </section>
     <section id="members">
       <h3>Members</h3>
       <ul>
 <? foreach ($group->members() as $rcsid => $name) { ?>
         <li><a href="userprofile.php?u=<?=$rcsid?>"><?=$name?></a></li>
-<? } ?>
-        <!-- TODO: Add a way to add more users to a group if you are in it. -->
-        
+<? } ?> 
       </ul>
-      <a href="newmembers.php?g=<?=$_GET["g"]?>"><button>Invite New Members</button></a>
+      <p><a href="newmembers.php?g=<?=$_GET["g"]?>">Invite New Members</a></p>
     </section>
 
     <section id="threads">
