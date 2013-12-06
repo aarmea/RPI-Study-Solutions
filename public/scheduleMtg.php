@@ -10,8 +10,8 @@ require_once "login.php"
 <?php include "resources/topbar.php" ?>
 <div id="content">
 <h2>Schedule an Event</h2>
-<p><a href="group.php?g=<?=$_GET["g"]?>">Return to Group Page</a></p>
-<p>A red time in the hour drop down means that someone in your group is unavailable at that time</p>
+<p><a href="group.php?g=<?=$_GET["g"]?>">Back to Group Page</a></p>
+<p>Note: If the selected time is red, someone in your group is unavailable at that time.</p>
 <form id="mainForm" method="post" action="scheduleMtg.php?g=<?=$_GET["g"]?>">
 	<div class="formData">
 	<select name='month' id='month'>
