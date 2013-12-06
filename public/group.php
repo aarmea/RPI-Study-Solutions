@@ -76,7 +76,7 @@ require_once "login.php"
       <h3>Group Thread</h3>
       <?php
             $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
-            if($results->t_id>0){?>
+            ?>
       <form action="groupThread.php" method="post">
           <select name="t_id">
             <?php foreach ($results as $row) { ?>
@@ -85,8 +85,10 @@ require_once "login.php"
          </select>
         <input type="submit" value="Go to thread">
        </form>
-      <?php } ?>
-       <p><a href="createThread.php">Create New Thread</a></p>
+      <form action="createThread.php" method="post">
+         <input type="hidden" name="group_id" value="<?php echo $_GET['g']; ?>">
+         <input type="submit" value="Create new thread">
+        </form>
         <?php
         // $results = $db->query('SELECT COUNT(*) FROM `group_members` WHERE groupid=' . $_GET['g'] . ' AND rcsid=' . $client->username() . ' AND is_owner=1');
         $res = $db->prepare('SELECT COUNT(*) FROM `group_members` WHERE groupid=:groupid AND rcsid=:rcsid AND is_owner=1');

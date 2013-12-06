@@ -36,14 +36,14 @@ require_once "login.php"
       }
     }
     ?>
-    <h2>Create Thread</h2>
+    <h2>Create Thread for <?php echo $group->name(); ?></h2>
     <form action="#" method="post">
       <input type="hidden" name="group_id" value="<?php echo $group->id(); ?>">
       <label>Thread Name:</label>
       <input type="text" name="threadName">
       <label>Post Body:</label>
       <textarea cols="40" rows="5" name="postBody"> Now we are inside the area - which is nice. </textarea>
-      <input type="submit" value="Submit">
+      <input type="submit" name="submit" value="Submit">
     </form>
   </div>
 </div>

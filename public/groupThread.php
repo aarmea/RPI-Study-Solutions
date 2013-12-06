@@ -68,7 +68,10 @@ $client = new User(phpCAS::getUser());
           <input type="hidden" name="t_id" value="<?php echo $_POST['t_id'] ?>">
           <input type="submit" name="isReply" value="Reply to this Thread">
         </form>
-        <a  href="createThread.php"><button>Start new Thread</button></a>
+        <form action="createThread.php" method="post">
+         <input type="hidden" name="group_id" value="<?php echo $_GET['g']; ?>">
+         <input type="submit" value="Create new thread">
+        </form>
       </div>
       <?php
     }else{
