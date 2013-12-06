@@ -47,6 +47,26 @@ a
       </ul>
       <a href="newgroup.php">Create a group</a>
     </div>
+    <?php 
+    if ($client->isadmin()) {
+    ?>
+     <form action="#" method="post">
+        <select name="t_id">
+          <?php
+          $results = $db->query('SELECT * FROM groups');
+          foreach ($results as $row) {
+           ?>
+           <option value="<?php echo $row->groupid; ?>"><?php echo $row->groupname; ?></option>
+           <?php
+
+         }
+         ?>
+       </select>
+      <input type="submit" name="isDelete" value="Delete">
+     </form>
+    <?php 
+    }
+    ?>
     <div id="meetings">
         <?php
       $res = $db->prepare("SELECT * FROM group_meetings
