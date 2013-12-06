@@ -65,9 +65,12 @@ a
           $month[$index]=$results->month;
           $day[$index]=$results->day;
           $hour[$index]=$results->hour;
+          $min[$index]=$results->min;
         }
-        echo '<h3>Next Meeting: '.$month['0'].' '.$day['0'].' '.$year['0']
-              .' at '.$hour['0'].':'.'</h3>';
+        if ($hour['0'] < 10) $displayHour='0'.$hour['0'];
+        if ($min['0'] < 10) $displayMin='0'.$min['0'];
+        echo '<h3>Next Meeting: '.date("F", strtotime($month['0'])).' '.$day['0'].', '.$year['0']
+              .' at '.$displayHour.':'.$displayMin.'</h3>';
       }
       ?>
     </div>
