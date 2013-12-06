@@ -94,8 +94,8 @@ a
           $hour[$index]=$results->hour;
           $min[$index]=$results->min;
         }
-        if ($hour['0'] < 10) $displayHour='0'.$hour['0'];
-        if ($min['0'] < 10) $displayMin='0'.$min['0'];
+        if ($hour['0'] < 10) $displayHour='0'.$hour['0']; else $displayHour=$hour['0'];
+        if ($min['0'] < 10) $displayMin='0'.$min['0']; else $displayMin=$min['0'];
         echo '<h3>Next Meeting: '.date("F", strtotime($month['0'])).' '.$day['0'].', '.$year['0']
               .' at '.$displayHour.':'.$displayMin.'</h3>';
       }
