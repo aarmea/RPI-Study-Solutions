@@ -96,10 +96,8 @@ require_once "login.php"
         $isOwner = $res->fetch();
         $isOwner = get_object_vars($isOwner);
         if ($isOwner['COUNT(*)'] >= 1) {
-        ?>
-         <?php
           $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
-          if($results->t_id>0){ ?>
+         ?>
          <form action="#" method="post">
             <select name="t_id">
               <?php foreach ($results as $row) {?>
@@ -108,9 +106,8 @@ require_once "login.php"
            </select>
           <input type="submit" name="isDelete" value="Delete">
           </form>
-        <?php } }?>
     </section>
-<? } else { ?>
+<? } } else { ?>
     This group does not exist.
 <? } ?>
   </div>

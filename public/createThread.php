@@ -5,7 +5,14 @@ require_once "auth/cas_init.php";
 require_once "classes/user.php";
 require_once "classes/group.php";
 
-require_once "login.php"
+require_once "login.php";
+
+
+if (isset($_POST['group_id'])) {
+   $group = new Group($_POST['group_id']);
+ }else{
+  header( 'Location: ./userprofile.php' ) ;
+ }
 ?>
 <div id="container">
 <?php include "resources/head.php"; ?>
@@ -13,9 +20,6 @@ require_once "login.php"
   <?php include "resources/topbar.php"; ?>
   <div id="content">
     <?php
-    if (isset($_POST['group_id'])) {
-       $group = new Group($_POST['group_id']);
-     }
      if (isset($_POST['submit'])) {
       try {
 
