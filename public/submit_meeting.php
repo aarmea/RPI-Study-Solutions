@@ -44,6 +44,8 @@ if($msg=='')
                             ':month'=>$month,
                             ':day'=>$day,
                             ':hour'=>$hour));
+
+  echo $msg;
                             
 }
 else { ?>
