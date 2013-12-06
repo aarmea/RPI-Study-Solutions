@@ -36,7 +36,7 @@ a
 <?php include "resources/topbar.php"?>
   <div id="content">
 <? if ($group->exists()) { ?>
-    <h2>Group: <?=$group->name()?></h2>
+    <h2><?=$group->name()?></h2>
     <h3>Meetings</h3>
     <form method="post" action="group.php?g=<?=$group->id()?>" />
       <div id="meetings">
@@ -55,24 +55,19 @@ a
         {
           foreach ($results as $row) 
           {
-            echo '<p>'.$row->name.':'.$row->month.'/'.$row->day.'/'.$row->year
-                .' at '.$row->hour.':00';
-            echo '<button type="submit" name="removeMeeting" value = "' . $row->meetingid .'">Remove</button>';
-            echo '</p>';
+            $name=$row->name;
+            $year=$row->year;
+            $month=$row->month;
+            $day=$row->day;
+            $hour=$row->hour;
+            $min=$row->min;
+            if ($hour['0'] < 10) $displayHour='0'.$hour['0']; else $displayHour=$hour['0'];
+            if ($min['0'] < 10) $displayMin='0'.$min['0']; else $displayMin=$min['0'];
+            echo '<p>'.$name.'<br>'.date("F", strtotime($month)).' '.$day.', '.$year
+                  .' at '.$displayHour.':'.$displayMin.
+            '<button type="submit" name="removeMeeting" value = "' . $row->meetingid .'">Remove</button></p>';
           }
         }
-        /*
-          $year[$index]=$results->year;
-          $month[$index]=$results->month;
-          $day[$index]=$results->day;
-          $hour[$index]=$results->hour;
-          $min[$index]=$results->min;
-        }
-        if ($hour['0'] < 10) $displayHour='0'.$hour['0'];
-        if ($min['0'] < 10) $displayMin='0'.$min['0'];
-        echo '<h3>Next Meeting: '.date("F", strtotime($month['0'])).' '.$day['0'].', '.$year['0']
-              .' at '.$displayHour.':'.$displayMin.'</h3>';
-        */
         ?>
       </div>
     </form>
@@ -112,7 +107,11 @@ a
        </form>
       <?php } ?>
        <p><a href="createThread.php">Create New Thread</a></p>
-        <?php 
+        <?php
+        // $results = $db->query('SELECT COUNT(*) FROM `group_members` WHERE groupid=' . $_GET['g'] . ' AND rcsid=' . $client->username() . ' AND is_owner=1');
+        $res = $db->prepare('SELECT COUNT(*) FROM `group_members` WHERE groupid=:groupid AND rcsid=:rcsid AND is_owner=1');
+        $res->execute(array(':groupid'=>$_POST['g'], ':rcsid'=>$client->username()));
+        // todo
         if ($client->isadmin()) {
         ?>
          <form action="#" method="post">
