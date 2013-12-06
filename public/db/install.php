@@ -73,6 +73,7 @@ try {
     `month` INT(2) NOT NULL,
     `day` INT(2) NOT NULL,
     `hour` INT(2) NOT NULL,
+    `min` INT(2) NOT NULL,
     `is_owner` BOOL DEFAULT FALSE,
     FOREIGN KEY (`groupid`) REFERENCES `groups`(`groupid`)
     ON UPDATE CASCADE ON DELETE CASCADE
