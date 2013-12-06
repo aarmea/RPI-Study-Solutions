@@ -75,9 +75,15 @@ require_once "login.php"
     <section id="threads">
       <h3>Group Thread</h3>
       <?php
+        $res = $db->prepare('SELECT COUNT(*) FROM `threads` WHERE group_id=:groupid');
+        $res->execute(array(':groupid'=>$_GET['g']));
+        $isEmpty = $res->fetch();
+        $isEmpty = get_object_vars($isEmpty);
+        if ($isEmpty['COUNT(*)'] >= 1) {          
             $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
             ?>
       <form action="groupThread.php" method="post">
+          <input type="hidden" name="groupid" value="<?php echo $_GET['g'] ?>">
           <select name="t_id">
             <?php foreach ($results as $row) { ?>
              <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
@@ -85,29 +91,35 @@ require_once "login.php"
          </select>
         <input type="submit" value="Go to thread">
        </form>
+       <?php } ?>
       <form action="createThread.php" method="post">
          <input type="hidden" name="group_id" value="<?php echo $_GET['g']; ?>">
          <input type="submit" value="Create new thread">
         </form>
         <?php
-        // $results = $db->query('SELECT COUNT(*) FROM `group_members` WHERE groupid=' . $_GET['g'] . ' AND rcsid=' . $client->username() . ' AND is_owner=1');
         $res = $db->prepare('SELECT COUNT(*) FROM `group_members` WHERE groupid=:groupid AND rcsid=:rcsid AND is_owner=1');
         $res->execute(array(':groupid'=>$_GET['g'], ':rcsid'=>$client->username()));
         $isOwner = $res->fetch();
         $isOwner = get_object_vars($isOwner);
         if ($isOwner['COUNT(*)'] >= 1) {
-          $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
-         ?>
-         <form action="#" method="post">
-            <select name="t_id">
-              <?php foreach ($results as $row) {?>
-               <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
-               <?php }?>
-           </select>
-          <input type="submit" name="isDelete" value="Delete">
-          </form>
+          $res = $db->prepare('SELECT COUNT(*) FROM `threads` WHERE group_id=:groupid');
+          $res->execute(array(':groupid'=>$_GET['g']));
+          $isEmpty = $res->fetch();
+          $isEmpty = get_object_vars($isEmpty);
+          if ($isEmpty['COUNT(*)'] >= 1) {
+            $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
+          ?>
+           <form action="#" method="post">
+              <select name="t_id">
+                <?php foreach ($results as $row) {?>
+                 <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
+                 <?php }?>
+             </select>
+            <input type="submit" name="isDelete" value="Delete">
+            </form>
+          <?php } } ?>
     </section>
-<? } } else { ?>
+<?  } else { ?>
     This group does not exist.
 <? } ?>
   </div>

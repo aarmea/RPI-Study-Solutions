@@ -69,7 +69,7 @@ $client = new User(phpCAS::getUser());
           <input type="submit" name="isReply" value="Reply to this Thread">
         </form>
         <form action="createThread.php" method="post">
-         <input type="hidden" name="group_id" value="<?php echo $_GET['g']; ?>">
+         <input type="hidden" name="group_id" value="<?php echo $_POST['groupid']; ?>">
          <input type="submit" value="Create new thread">
         </form>
       </div>
@@ -88,7 +88,6 @@ $client = new User(phpCAS::getUser());
           <select name="g">
             <?php
             $results = $db->query('SELECT * FROM groups JOIN group_members ON groups.groupid=group_members.groupid WHERE rcsid=\'' . $client->username().'\'');
-            print_r($results);
             foreach ($results as $row) {
              ?>
              <option value="<?php echo $row->groupid; ?>"><?php echo $row->groupname; ?></option>
