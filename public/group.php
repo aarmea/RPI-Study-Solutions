@@ -112,7 +112,11 @@ a
        </form>
       <?php } ?>
        <p><a href="createThread.php">Create New Thread</a></p>
-        <?php 
+        <?php
+        // $results = $db->query('SELECT COUNT(*) FROM `group_members` WHERE groupid=' . $_GET['g'] . ' AND rcsid=' . $client->username() . ' AND is_owner=1');
+        $res = $db->prepare('SELECT COUNT(*) FROM `group_members` WHERE groupid=:groupid AND rcsid=:rcsid AND is_owner=1');
+        $res->execute(array(':groupid'=>$_POST['g'], ':rcsid'=>$client->username()));
+        // todo
         if ($client->isadmin()) {
         ?>
          <form action="#" method="post">
