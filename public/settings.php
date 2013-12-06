@@ -116,7 +116,7 @@
         <button id="selectall">Select All</button>
         <button id="unselectall">Unselect All</button>
       
-        <h3>Change alt email for reminders</h3>
+        <h3>Alternate Email</h3>
           <input type="input" name="email" value= <?php echo '"' . getEmail() . '"'; ?> />
         <input id="posthidden" type="hidden" name="dates" />
         <br/><br/><br/>
