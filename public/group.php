@@ -36,7 +36,7 @@ a
 <?php include "resources/topbar.php"?>
   <div id="content">
 <? if ($group->exists()) { ?>
-    <h2>Group: <?=$group->name()?></h2>
+    <h2><?=$group->name()?></h2>
     <h3>Meetings</h3>
     <form method="post" action="group.php?g=<?=$group->id()?>" />
       <div id="meetings">
