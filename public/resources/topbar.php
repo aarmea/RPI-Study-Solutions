@@ -28,11 +28,10 @@ $().ready(function() {
 <div class="jimgMenu">
   <ul>
     <li id="logo"><a href="index.php">Home Page</a></li>
-
-    <li id="people"><a href="createThread.php">Create Group</a></li>
-
     <li id="people"><a href="newgroup.php">Create Group</a></li>
-    <li id="explore"><a href="groupThread.php">View groups</a></li>
+
+    
+    <li id="post"><a href="groupThread.php">View groups</a></li>
     <li id="profile"><a href="userprofile.php">stuffs</a></li>
     <li id="setting"><a href="settings.php">stuffs</a></li>
     <?php
