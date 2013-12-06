@@ -18,7 +18,6 @@ require_once "login.php"
     <input id="submit" type="submit" value="submit" id="submit" name="submit"/>
   </div>
 </form>
-
 <?php
 
   if(isset($_POST['submit']))
@@ -32,5 +31,7 @@ require_once "login.php"
   }
 
 ?>
+</div>
+
 
 <?php include "resources/footer.php" ?>
