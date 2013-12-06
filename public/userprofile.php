@@ -117,6 +117,6 @@ require_once "login.php"
     </div>
   </div>
 </div>
- <p><?php include "resources/footer2.php"; ?></p>
+ <?php include "resources/footer2.php"; ?>
 </body>
 </html>

@@ -35,11 +35,16 @@ require_once "login.php"
 <h2 id="submitMessage"></h2>
 <div id="calendar"></div>
   <script src="js/calendar.js"></script>
+</div>
+  <?php include "resources/footer2.php"; ?>
+</body>
+</html>
+
 <script type="text/javascript">
 var submitted = false;
 var gid = <?php 
-						if(isset($_GET["g"])) echo $_GET["g"]; 
-						else echo 0; ?>;
+            if(isset($_GET["g"])) echo $_GET["g"]; 
+            else echo 0; ?>;
 function post_meeting()
 {
   if(submitted == true) { return false; }
@@ -69,7 +74,7 @@ function fill_dropdown()
         data: form,
         success: function(data) 
         {
-        	$("#time").html(data);
+          $("#time").html(data);
         }
     });
   return false;
@@ -80,5 +85,3 @@ $("#month").change(fill_dropdown);
 $("#submit").bind('click',post_meeting);
 fill_dropdown();
 </script>
-</body>
-</html>
