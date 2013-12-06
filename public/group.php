@@ -5,18 +5,6 @@ require_once "classes/user.php";
 $group = new Group($_GET["g"]);
 require_once "login.php"
 ?>
-
-<style>
-p, a
-{
-  font-size:15px;
-}
-a
-{
-  font-weight:bold;
-}
-</style>
-
 <?php include "resources/head.php"; ?>
 <body>
   <?php
@@ -27,9 +15,7 @@ a
   if(isset($_POST['removeMeeting']))
   {
     $id = $_POST['removeMeeting'];
-
     $query = $db->prepare("DELETE FROM group_meetings WHERE meetingid=:meetingid");
-
     $query->execute(array(":meetingid"=>$id));
   }
   ?>
@@ -73,9 +59,7 @@ a
       </div>
     </form>
     <p><a href="scheduleMtg.php?g=<?=$group->id()?>">Schedule a meeting for this group</a></p>
-    
     <h3><?=$group->name()?>'s Calendar</h3>
-
     <div id="calendar"></div>
     <script src="js/calendar.js"></script>
     </section>
@@ -88,7 +72,6 @@ a
       </ul>
       <p><a href="newmembers.php?g=<?=$_GET["g"]?>">Invite New Members</a></p>
     </section>
-
     <section id="threads">
       <h3>Group Thread</h3>
       <?php
@@ -96,13 +79,9 @@ a
             if($results->t_id>0){?>
       <form action="groupThread.php" method="post">
           <select name="t_id">
-            <?php foreach ($results as $row) {
-             ?>
+            <?php foreach ($results as $row) { ?>
              <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
-             <?php
-
-           }
-           ?>
+             <?php } ?>
          </select>
         <input type="submit" value="Go to thread">
        </form>
@@ -116,23 +95,18 @@ a
         $isOwner = get_object_vars($isOwner);
         if ($isOwner['COUNT(*)'] >= 1) {
         ?>
+         <?php
+          $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
+          if($results->t_id>0){ ?>
          <form action="#" method="post">
             <select name="t_id">
-              <?php
-              $results = $db->query('SELECT * FROM threads WHERE group_id=' . $_GET['g']);
-              foreach ($results as $row) {
-               ?>
+              <?php foreach ($results as $row) {?>
                <option value="<?php echo $row->t_id; ?>"><?php echo $row->threadName; ?></option>
-               <?php
-
-             }
-             ?>
+               <?php }?>
            </select>
           <input type="submit" name="isDelete" value="Delete">
-         </form>
-        <?php 
-        }
-        ?>
+          </form>
+        <?php } }?>
     </section>
 <? } else { ?>
     This group does not exist.
