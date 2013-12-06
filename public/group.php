@@ -55,20 +55,24 @@ a
         {
           foreach ($results as $row) 
           {
-            /*
-            $year[$index]=$row->year;
-            $month[$index]=$row->month;
-            $day[$index]=$row->day;
-            $hour[$index]=$row->hour;
-            */
             echo '<p>'.$row->name.':'.$row->month.'/'.$row->day.'/'.$row->year
                 .' at '.$row->hour.':00';
             echo '<button type="submit" name="removeMeeting" value = "' . $row->meetingid .'">Remove</button>';
             echo '</p>';
           }
-          //echo '<h3>Next Meeting: '.$month['0'].'/'.$day['0'].'/'.$year['0']
-          //      .' at '.$hour['0'].':00'.'</h3>';
         }
+        /*
+          $year[$index]=$results->year;
+          $month[$index]=$results->month;
+          $day[$index]=$results->day;
+          $hour[$index]=$results->hour;
+          $min[$index]=$results->min;
+        }
+        if ($hour['0'] < 10) $displayHour='0'.$hour['0'];
+        if ($min['0'] < 10) $displayMin='0'.$min['0'];
+        echo '<h3>Next Meeting: '.date("F", strtotime($month['0'])).' '.$day['0'].', '.$year['0']
+              .' at '.$displayHour.':'.$displayMin.'</h3>';
+        */
         ?>
       </div>
     </form>

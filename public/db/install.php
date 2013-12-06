@@ -74,6 +74,7 @@ try {
     `month` INT(2) NOT NULL,
     `day` INT(2) NOT NULL,
     `hour` INT(2) NOT NULL,
+    `min` INT(2) NOT NULL,
     `is_owner` BOOL DEFAULT FALSE,
     PRIMARY KEY (`meetingid`),
     FOREIGN KEY (`groupid`) REFERENCES `groups`(`groupid`)
