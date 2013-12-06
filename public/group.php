@@ -28,7 +28,7 @@ require_once "login.php"
       <div id="meetings">
           <?php
         $res = $db->prepare("SELECT DISTINCT * FROM group_meetings
-          INNER JOIN groups ON groups.groupid = :groupid
+          INNER JOIN groups ON group_meetings.groupid = :groupid
           ORDER BY group_meetings.year,group_meetings.month,group_meetings.day,
                     group_meetings.hour" );
         $res->execute(array(':groupid'=>$group->id()));
